@@ -20,7 +20,9 @@ class _LojaPageState extends ModularState<LojaPage, LojaController> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          Container(color: Colors.black)
+        ],
       ),
     );
   }
