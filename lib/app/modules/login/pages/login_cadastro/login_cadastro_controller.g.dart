@@ -9,40 +9,53 @@ part of 'login_cadastro_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginCadastroController on _LoginCadastroControllerBase, Store {
-  final _$valueAtom = Atom(name: '_LoginCadastroControllerBase.value');
+  final _$emailAtom = Atom(name: '_LoginCadastroControllerBase.email');
 
   @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
+  String get email {
+    _$emailAtom.context.enforceReadPolicy(_$emailAtom);
+    _$emailAtom.reportObserved();
+    return super.email;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
+  set email(String value) {
+    _$emailAtom.context.conditionallyRunInAction(() {
+      super.email = value;
+      _$emailAtom.reportChanged();
+    }, _$emailAtom, name: '${_$emailAtom.name}_set');
   }
 
-  final _$_LoginCadastroControllerBaseActionController =
-      ActionController(name: '_LoginCadastroControllerBase');
+  final _$passwordAtom = Atom(name: '_LoginCadastroControllerBase.password');
 
   @override
-  void increment() {
-    final _$actionInfo =
-        _$_LoginCadastroControllerBaseActionController.startAction();
-    try {
-      return super.increment();
-    } finally {
-      _$_LoginCadastroControllerBaseActionController.endAction(_$actionInfo);
-    }
+  String get password {
+    _$passwordAtom.context.enforceReadPolicy(_$passwordAtom);
+    _$passwordAtom.reportObserved();
+    return super.password;
+  }
+
+  @override
+  set password(String value) {
+    _$passwordAtom.context.conditionallyRunInAction(() {
+      super.password = value;
+      _$passwordAtom.reportChanged();
+    }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
+  }
+
+  final _$registerWithEmailAndPasswordAsyncAction =
+      AsyncAction('registerWithEmailAndPassword');
+
+  @override
+  Future<dynamic> registerWithEmailAndPassword() {
+    return _$registerWithEmailAndPasswordAsyncAction
+        .run(() => super.registerWithEmailAndPassword());
   }
 
   @override
   String toString() {
-    final string = 'value: ${value.toString()}';
+    final string =
+        'email: ${email.toString()},password: ${password.toString()}';
     return '{$string}';
   }
 }

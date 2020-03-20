@@ -16,9 +16,9 @@ class LoginCadastroPage extends StatefulWidget {
 
 class _LoginCadastroPageState
     extends ModularState<LoginCadastroPage, LoginCadastroController> {
+  final _formKey = GlobalKey<FormState>();
+
   bool showSpinner = false;
-  String email;
-  String password;
 
   @override
   Widget build(BuildContext context) {
@@ -28,52 +28,65 @@ class _LoginCadastroPageState
         inAsyncCall: showSpinner,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Flexible(
-                child: Hero(
-                  tag: 'logo',
-                  child: Container(
-                    height: 200.0,
-                    child: Image(image: AssetImage('assets/foodhouse.png')),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Flexible(
+                  child: Hero(
+                    tag: 'logo',
+                    child: Container(
+                      height: 200.0,
+                      child: Image(image: AssetImage('assets/foodhouse.png')),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 48.0,
-              ),
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  email = value;
-                },
-                decoration:
-                    kTextFieldDecoration.copyWith(hintText: 'Digite seu email'),
-              ),
-              SizedBox(
-                height: 8.0,
-              ),
-              TextField(
-                obscureText: true,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  password = value;
-                },
-                decoration:
-                    kTextFieldDecoration.copyWith(hintText: 'Digite sua senha'),
-              ),
-              SizedBox(
-                height: 24.0,
-              ),
-              RoundedButton(
-                title: 'Cadastrar',
-                colour: Colors.amber[600],
-                onPressed: () async {},
-              ),
-            ],
+                SizedBox(
+                  height: 48.0,
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.center,
+                  validator: (val) =>
+                      val.isEmpty ? 'Digite um email válido' : null,
+                  onChanged: (value) {
+                    controller.email = value;
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Digite seu email'),
+                ),
+                SizedBox(
+                  height: 8.0,
+                ),
+                TextFormField(
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  validator: (val) => val.length < 5
+                      ? 'Entre com uma senha com mais de 6 dígitos'
+                      : null,
+                  onChanged: (value) {
+                    controller.password = value;
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Digite sua senha'),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                RoundedButton(
+                  title: 'Cadastrar',
+                  colour: Colors.amber[600],
+                  onPressed: () async {
+                    if (_formKey.currentState.validate()) {
+                      dynamic result = await controller.registerWithEmailAndPassword();
+                      
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
