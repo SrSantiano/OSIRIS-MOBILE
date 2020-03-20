@@ -8,8 +8,8 @@ class LoginRepository extends Disposable implements ILoginRepository {
   LoginRepository(this._auth);
 
   @override
-  Future<FirebaseUser> getEmailPasswordLogin() {
-    // TODO: implement getEmailPasswordLogin
+  Future<FirebaseUser> getEmailPasswordLogin(
+      String email, String password) async {
     return null;
   }
 
@@ -26,9 +26,19 @@ class LoginRepository extends Disposable implements ILoginRepository {
   }
 
   @override
-  Future<FirebaseUser> getUser() {
-    // TODO: implement getUser
-    return null;
+  Future<FirebaseUser> getUser() => _auth.currentUser();
+
+  @override
+  Future<FirebaseUser> registerWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return result.user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 
   @override
