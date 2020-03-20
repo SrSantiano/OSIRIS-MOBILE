@@ -1,0 +1,4 @@
+lib/app/modules/feed/pages/feed_cadastro/feed_cadastro_page.dart
+test/app/modules/feed/pages/feed_cadastro/feed_cadastro_page_test.dart
+lib/app/modules/feed/pages/feed_cadastro/feed_cadastro_controller.dart
+test/app/modules/feed/pages/feed_cadastro/feed_cadastro_controller_test.dart

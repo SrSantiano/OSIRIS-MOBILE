@@ -1,0 +1,4 @@
+lib/app/modules/login/login_cadastro/login_cadastro_widget.dart
+test/app/modules/login/login_cadastro/login_cadastro_widget_test.dart
+lib/app/modules/login/login_cadastro/login_cadastro_controller.dart
+test/app/modules/login/login_cadastro/login_cadastro_controller_test.dart

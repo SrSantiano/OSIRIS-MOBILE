@@ -1,0 +1,4 @@
+lib/app/help/help_page.dart
+test/app/help/help_page_test.dart
+lib/app/help/help_controller.dart
+test/app/help/help_controller_test.dart

@@ -1,0 +1,7 @@
+enum RedeSocialEnum{
+  INSTAGRAM,
+  FACEBOOK,
+  TWITTER,
+  YOUTUBE,
+  WHATSAPP
+}

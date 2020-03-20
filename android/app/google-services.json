@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "706000365331",
+    "firebase_url": "https://projeto-osiris.firebaseio.com",
+    "project_id": "projeto-osiris",
+    "storage_bucket": "projeto-osiris.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706000365331:android:f2b9ffe7f5bb0d9c485ce6",
+        "android_client_info": {
+          "package_name": "com.br.tavernadev.osiris"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706000365331-3fkbq924qpnou16re679bnvghushbokp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkHRarK9Dg3wFgnsJqK_Mrxi4OCMYHQhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706000365331-3fkbq924qpnou16re679bnvghushbokp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
