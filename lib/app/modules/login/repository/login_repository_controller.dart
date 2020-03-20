@@ -8,6 +8,7 @@ class LoginRepositoryController = _LoginRepositoryControllerBase
     with _$LoginRepositoryController;
 
 abstract class _LoginRepositoryControllerBase with Store {
+  
   final ILoginRepository _loginRepository = Modular.get();
 
   Future registerWithEmailAndPassword(String email, String password) async{
