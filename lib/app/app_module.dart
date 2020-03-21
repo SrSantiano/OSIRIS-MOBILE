@@ -7,10 +7,13 @@ import 'package:osiris/app/modules/login/login_module.dart';
 import 'package:osiris/app/modules/login/repository/login_repository.dart';
 import 'package:osiris/app/modules/login/repository/login_repository_contracts.dart';
 
+import 'modules/login/repository/login_repository_controller.dart';
+
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
+        Bind((i) => LoginRepositoryController()),
         Bind<ILoginRepository>((i) => LoginRepository(FirebaseAuth.instance)),
       ];
 
