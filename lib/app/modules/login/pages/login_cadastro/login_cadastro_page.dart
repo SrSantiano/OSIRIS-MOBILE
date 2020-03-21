@@ -4,6 +4,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:osiris/app/modules/login/pages/login_cadastro/login_cadastro_controller.dart';
 import 'package:osiris/app/utils/constants.dart';
 import 'package:osiris/app/utils/rounded_button.dart';
+import 'package:osiris/app/utils/social_icons.dart';
 
 class LoginCadastroPage extends StatefulWidget {
   final String title;
@@ -77,14 +78,65 @@ class _LoginCadastroPageState
                 ),
                 RoundedButton(
                   title: 'Cadastrar',
-                  colour: Colors.amber[600],
+                  colour: Colors.amber,
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
-                      dynamic result = await controller.registerWithEmailAndPassword();
-                      
+                      dynamic result =
+                          await controller.registerWithEmailAndPassword();
                     }
                   },
                 ),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  height: 50,
+                  width: 100,
+                  color: Colors.transparent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SocialIcon(
+                        colors: [
+                          Color(0xFF102397),
+                          Color(0xFF187adf),
+                        ],
+                        icon: Image.asset("assets/facebook_logo.png"),
+                        onPressed: () {},
+                      ),
+                      SocialIcon(
+                        colors: [
+                          Color(0xFFff4f38),
+                          Color(0xFFff355d),
+                        ],
+                        icon: Image.asset("assets/google_logo.png"),
+
+                        //letra: Text("G" , style: TextStyle(fontSize: 35, fontWeight: FontWeight.w800),),
+
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Novo aqui? ",
+                      style: TextStyle(fontFamily: "Poppins-Medium"),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Text("Cadastre-se agora!",
+                          style: TextStyle(
+                              color: Color(0xFF5d74e3),
+                              fontFamily: "Poppins-Bold")),
+                    )
+                  ],
+                )
               ],
             ),
           ),
