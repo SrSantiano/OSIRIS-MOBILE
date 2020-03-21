@@ -41,6 +41,7 @@ class LoginRepository extends Disposable implements ILoginRepository {
     }
   }
 
+// Teste com Git Flow
   @override
   void dispose() {
     // TODO: implement dispose
