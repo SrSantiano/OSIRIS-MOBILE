@@ -17,7 +17,7 @@ abstract class _LoginCadastroControllerBase with Store {
   LoginRepositoryController _auth = Modular.get();
 
   @action
-  Future registerWithEmailAndPassword() async {
+  Future<void> registerWithEmailAndPassword() async {
     try {
       await _auth.registerWithEmailAndPassword(this.email, this.password);
     } catch (e) {
