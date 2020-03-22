@@ -5,11 +5,11 @@ import 'Tema.dart';
 
 class Loja extends Usuario{
   String _uidLojista;
-  String _nomeFantasia;
+  String nomeFantasia;
   bool _possuiLojaFisica;
   String _categoriaPrimaria;
   double _avaliacao;
-  String _imagemPerfil;
+  String imagemPerfil;
   List<String> _publicacaoImagemInicial;
   Tema _tema;
   String tempoEntrega;
