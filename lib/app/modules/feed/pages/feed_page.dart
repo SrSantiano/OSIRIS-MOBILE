@@ -12,16 +12,16 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPageState extends ModularState<FeedPage, FeedController> {
   //use 'controller' variable to access controller
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: <Widget>[],
-      ),
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body:  Column(
+            children: <Widget>[
+            ],
+          ),
+        );
   }
 }

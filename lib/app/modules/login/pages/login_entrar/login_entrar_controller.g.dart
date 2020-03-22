@@ -43,6 +43,40 @@ mixin _$LoginEntrarController on _LoginEntrarControllerBase, Store {
     }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
   }
 
+  final _$loadingAtom = Atom(name: '_LoginEntrarControllerBase.loading');
+
+  @override
+  bool get loading {
+    _$loadingAtom.context.enforceReadPolicy(_$loadingAtom);
+    _$loadingAtom.reportObserved();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.context.conditionallyRunInAction(() {
+      super.loading = value;
+      _$loadingAtom.reportChanged();
+    }, _$loadingAtom, name: '${_$loadingAtom.name}_set');
+  }
+
+  final _$userAtom = Atom(name: '_LoginEntrarControllerBase.user');
+
+  @override
+  FirebaseUser get user {
+    _$userAtom.context.enforceReadPolicy(_$userAtom);
+    _$userAtom.reportObserved();
+    return super.user;
+  }
+
+  @override
+  set user(FirebaseUser value) {
+    _$userAtom.context.conditionallyRunInAction(() {
+      super.user = value;
+      _$userAtom.reportChanged();
+    }, _$userAtom, name: '${_$userAtom.name}_set');
+  }
+
   final _$loginWithEmailAndPasswordAsyncAction =
       AsyncAction('loginWithEmailAndPassword');
 
@@ -52,10 +86,17 @@ mixin _$LoginEntrarController on _LoginEntrarControllerBase, Store {
         .run(() => super.loginWithEmailAndPassword());
   }
 
+  final _$loginWithFacebookAsyncAction = AsyncAction('loginWithFacebook');
+
+  @override
+  Future<dynamic> loginWithFacebook() {
+    return _$loginWithFacebookAsyncAction.run(() => super.loginWithFacebook());
+  }
+
   @override
   String toString() {
     final string =
-        'email: ${email.toString()},password: ${password.toString()}';
+        'email: ${email.toString()},password: ${password.toString()},loading: ${loading.toString()},user: ${user.toString()}';
     return '{$string}';
   }
 }

@@ -11,6 +11,13 @@ class LoginRepositoryController = _LoginRepositoryControllerBase
 abstract class _LoginRepositoryControllerBase with Store {
   final ILoginRepository _loginRepository = Modular.get();
 
+   @observable
+  FirebaseUser user;
+
+  @observable
+  AuthStatus status = AuthStatus.loading;
+  
+  
   Future<void> registerWithEmailAndPassword(String email, String password) async {
     await _loginRepository.registerWithEmailAndPassword(email, password);
   }
@@ -21,4 +28,30 @@ abstract class _LoginRepositoryControllerBase with Store {
        print(user.uid);
      });
   }
+
+
+  @action
+  setUser(FirebaseUser value){
+    user = value;
+    status = user == null ?  AuthStatus.logoff : AuthStatus.login;
+  }
+
+  @action
+  Future loginWithFacebook() async{
+    user = await  _loginRepository.getFacebookLogin();
+  }
+
+  @action
+  Future logOut(){
+    return  _loginRepository.getLogOut();
+  }
+
+  @action
+  Future<FirebaseUser> getUser() async{
+    return _loginRepository.getUser();
+  }
+
+}
+enum AuthStatus{
+  loading, login, logoff
 }

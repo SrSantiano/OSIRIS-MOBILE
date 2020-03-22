@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SocialIcon extends StatelessWidget {
+
   List<Color> colors;
   Image icon;
   Function onPressed;

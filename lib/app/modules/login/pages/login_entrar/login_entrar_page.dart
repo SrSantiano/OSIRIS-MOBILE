@@ -72,7 +72,8 @@ class _LoginEntrarPageState
               RoundedButton(
                 title: 'Log In',
                 colour: Colors.amber[600],
-                onPressed: () async {},
+                onPressed: () async {
+                },
               ),
               SizedBox(
                   height: 30,
@@ -90,7 +91,7 @@ class _LoginEntrarPageState
                           Color(0xFF187adf),
                         ],
                         icon: Image.asset("assets/facebook_logo.png"),
-                        onPressed: () {},
+                        onPressed: controller.loginWithFacebook,
                       ),
                       SocialIcon(
                         colors: [
@@ -117,7 +118,8 @@ class _LoginEntrarPageState
                       style: TextStyle(fontFamily: "Poppins-Medium"),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () =>
+                       Modular.to.pushReplacementNamed('/cadastro'),
                       child: Text("Cadastre-se agora!",
                           style: TextStyle(
                               color: Color(0xFF5d74e3),

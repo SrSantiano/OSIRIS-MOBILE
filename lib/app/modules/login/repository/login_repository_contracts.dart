@@ -7,4 +7,5 @@ abstract class ILoginRepository {
       String email, String password);
   Future<FirebaseUser> getGoogleLogin();
   Future<FirebaseUser> getFacebookLogin();
+  Future getLogOut();
 }

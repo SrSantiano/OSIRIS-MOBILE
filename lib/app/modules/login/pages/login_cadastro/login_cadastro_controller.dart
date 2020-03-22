@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:osiris/app/modules/login/repository/login_repository_controller.dart';
@@ -14,6 +15,12 @@ abstract class _LoginCadastroControllerBase with Store {
   @observable
   String password = '';
 
+   @observable
+  bool loading = false;
+  
+  @observable
+  FirebaseUser user;
+
   LoginRepositoryController _auth = Modular.get();
 
   @action
@@ -22,6 +29,17 @@ abstract class _LoginCadastroControllerBase with Store {
       await _auth.registerWithEmailAndPassword(this.email, this.password);
     } catch (e) {
       print(e);
+    }
+  }
+
+  @action
+  Future loginWithFacebook() async {
+    try {
+      loading = true;
+     user =  await  _auth.loginWithFacebook();
+      Modular.to.pushReplacementNamed('/feed');
+    } catch (e) {
+      loading = false;
     }
   }
 }

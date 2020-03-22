@@ -43,19 +43,60 @@ mixin _$LoginCadastroController on _LoginCadastroControllerBase, Store {
     }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
   }
 
+  final _$loadingAtom = Atom(name: '_LoginCadastroControllerBase.loading');
+
+  @override
+  bool get loading {
+    _$loadingAtom.context.enforceReadPolicy(_$loadingAtom);
+    _$loadingAtom.reportObserved();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.context.conditionallyRunInAction(() {
+      super.loading = value;
+      _$loadingAtom.reportChanged();
+    }, _$loadingAtom, name: '${_$loadingAtom.name}_set');
+  }
+
+  final _$userAtom = Atom(name: '_LoginCadastroControllerBase.user');
+
+  @override
+  FirebaseUser get user {
+    _$userAtom.context.enforceReadPolicy(_$userAtom);
+    _$userAtom.reportObserved();
+    return super.user;
+  }
+
+  @override
+  set user(FirebaseUser value) {
+    _$userAtom.context.conditionallyRunInAction(() {
+      super.user = value;
+      _$userAtom.reportChanged();
+    }, _$userAtom, name: '${_$userAtom.name}_set');
+  }
+
   final _$registerWithEmailAndPasswordAsyncAction =
       AsyncAction('registerWithEmailAndPassword');
 
   @override
-  Future<dynamic> registerWithEmailAndPassword() {
+  Future<void> registerWithEmailAndPassword() {
     return _$registerWithEmailAndPasswordAsyncAction
         .run(() => super.registerWithEmailAndPassword());
+  }
+
+  final _$loginWithFacebookAsyncAction = AsyncAction('loginWithFacebook');
+
+  @override
+  Future<dynamic> loginWithFacebook() {
+    return _$loginWithFacebookAsyncAction.run(() => super.loginWithFacebook());
   }
 
   @override
   String toString() {
     final string =
-        'email: ${email.toString()},password: ${password.toString()}';
+        'email: ${email.toString()},password: ${password.toString()},loading: ${loading.toString()},user: ${user.toString()}';
     return '{$string}';
   }
 }

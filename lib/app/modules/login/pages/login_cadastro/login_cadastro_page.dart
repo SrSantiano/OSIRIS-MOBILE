@@ -82,7 +82,7 @@ class _LoginCadastroPageState
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
                       dynamic result =
-                          await controller.registerWithEmailAndPassword();
+                           controller.registerWithEmailAndPassword();
                     }
                   },
                 ),
@@ -102,7 +102,7 @@ class _LoginCadastroPageState
                           Color(0xFF187adf),
                         ],
                         icon: Image.asset("assets/facebook_logo.png"),
-                        onPressed: () {},
+                        onPressed:controller.loginWithFacebook,
                       ),
                       SocialIcon(
                         colors: [
@@ -118,25 +118,6 @@ class _LoginCadastroPageState
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Novo aqui? ",
-                      style: TextStyle(fontFamily: "Poppins-Medium"),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Text("Cadastre-se agora!",
-                          style: TextStyle(
-                              color: Color(0xFF5d74e3),
-                              fontFamily: "Poppins-Bold")),
-                    )
-                  ],
-                )
               ],
             ),
           ),

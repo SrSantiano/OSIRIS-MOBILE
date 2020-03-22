@@ -10,13 +10,19 @@ class LoginEntrarController = _LoginEntrarControllerBase
     with _$LoginEntrarController;
 
 abstract class _LoginEntrarControllerBase with Store {
+  LoginRepositoryController _auth = Modular.get();
+  
   @observable
   String email = '';
 
   @observable
   String password = '';
 
-  LoginRepositoryController _auth = Modular.get();
+  @observable
+  bool loading = false;
+  
+  @observable
+  FirebaseUser user;
 
   @action
   Future<void> loginWithEmailAndPassword() async {
@@ -26,4 +32,16 @@ abstract class _LoginEntrarControllerBase with Store {
       print(e);
     }
   }
+
+  @action
+  Future loginWithFacebook() async {
+    try {
+      loading = true;
+     user =  await  _auth.loginWithFacebook();
+      Modular.to.pushReplacementNamed('/feed');
+    } catch (e) {
+      loading = false;
+    }
+  }
 }
+

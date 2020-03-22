@@ -10,7 +10,7 @@ class FeedModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => FeedPage()),
+        Router('/feed', child: (_, args) => FeedPage()),
       ];
 
   static Inject get to => Inject<FeedModule>.of();
