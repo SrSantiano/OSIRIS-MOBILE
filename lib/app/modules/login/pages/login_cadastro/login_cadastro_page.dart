@@ -82,7 +82,8 @@ class _LoginCadastroPageState
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
                       dynamic result =
-                          await controller.registerWithEmailAndPassword();
+                          controller.registerWithEmailAndPassword();
+                      //await controller.registerWithEmailAndPassword();
                     }
                   },
                 ),

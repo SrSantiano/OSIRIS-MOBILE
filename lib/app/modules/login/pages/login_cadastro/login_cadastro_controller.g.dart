@@ -47,7 +47,7 @@ mixin _$LoginCadastroController on _LoginCadastroControllerBase, Store {
       AsyncAction('registerWithEmailAndPassword');
 
   @override
-  Future<dynamic> registerWithEmailAndPassword() {
+  Future<void> registerWithEmailAndPassword() {
     return _$registerWithEmailAndPasswordAsyncAction
         .run(() => super.registerWithEmailAndPassword());
   }

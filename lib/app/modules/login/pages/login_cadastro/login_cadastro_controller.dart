@@ -14,7 +14,7 @@ abstract class _LoginCadastroControllerBase with Store {
   @observable
   String password = '';
 
-  LoginRepositoryController _auth = Modular.get();
+  final LoginRepositoryController _auth = Modular.get();
 
   @action
   Future<void> registerWithEmailAndPassword() async {

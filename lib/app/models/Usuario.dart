@@ -1,17 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 abstract class Usuario {
+
   String nome;
+
   String email;
+
   bool usuarioAtivo;
-  int dataHoraCadastro;
+
+  String dataHoraCadastro;
+
   String telefone1;
+
   String telefone2;
 
-  Usuario();
+  //Endereço
 
-  Usuario.novoUsuario(this.nome, this.email, this.telefone1, this.telefone2) {
-    this.usuarioAtivo = true;
-    this.dataHoraCadastro = Timestamp.now().seconds;
-  }
+
+  Usuario({this.nome, this.email, this.telefone1, this.telefone2})
+      : usuarioAtivo = true,
+        dataHoraCadastro = Timestamp.now().seconds.toString();
 }
