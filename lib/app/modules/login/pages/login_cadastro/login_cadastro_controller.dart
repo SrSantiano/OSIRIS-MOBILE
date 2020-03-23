@@ -15,11 +15,6 @@ abstract class _LoginCadastroControllerBase with Store {
   @observable
   String password = '';
 
-   @observable
-  bool loading = false;
-  
-  @observable
-  FirebaseUser user;
 
   LoginRepositoryController _auth = Modular.get();
 
@@ -35,11 +30,23 @@ abstract class _LoginCadastroControllerBase with Store {
   @action
   Future loginWithFacebook() async {
     try {
-      loading = true;
-     user =  await  _auth.loginWithFacebook();
+
+    if( await  _auth.loginWithFacebook() != null){
       Modular.to.pushReplacementNamed('/feed');
+    }
     } catch (e) {
-      loading = false;
+      print(e);
+    }
+  }
+
+  Future<void> loginWithGoogle() async{
+
+    try {
+      if(await _auth.loginWithGoogle() != null){
+        Modular.to.pushReplacementNamed('/feed');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }

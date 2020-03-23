@@ -11,47 +11,43 @@ class LoginRepositoryController = _LoginRepositoryControllerBase
 abstract class _LoginRepositoryControllerBase with Store {
   final ILoginRepository _loginRepository = Modular.get();
 
-   @observable
-  FirebaseUser user;
-
-  @observable
-  AuthStatus status = AuthStatus.loading;
-  
-  
-  Future<void> registerWithEmailAndPassword(String email, String password) async {
+  Future<void> registerWithEmailAndPassword(
+      String email, String password) async {
     await _loginRepository.registerWithEmailAndPassword(email, password);
   }
 
   Future<void> loginWithEmailAndPassword(String email, String password) async {
-     await _loginRepository.loginWithEmailAndPassword(email, password);
-     await _loginRepository.getUser().then((user){
-       print(user.uid);
-     });
-  }
-
-
-  @action
-  setUser(FirebaseUser value){
-    user = value;
-    status = user == null ?  AuthStatus.logoff : AuthStatus.login;
+    await _loginRepository.loginWithEmailAndPassword(email, password);
+    await _loginRepository.getUser().then((user) {
+      print(user.uid);
+    });
   }
 
   @action
-  Future loginWithFacebook() async{
-    user = await  _loginRepository.getFacebookLogin();
+  Future<FirebaseUser> loginWithGoogle() async {
+    try {
+      return await _loginRepository.getGoogleLogin();
+    } catch (e) {
+      return null;
+    }
   }
 
   @action
-  Future logOut(){
-    return  _loginRepository.getLogOut();
+  Future<FirebaseUser> loginWithFacebook() async {
+    try {
+      return await _loginRepository.getFacebookLogin();
+    } catch (e) {
+      return null;
+    }
   }
 
   @action
-  Future<FirebaseUser> getUser() async{
+  Future logOut() {
+    return _loginRepository.getLogOut();
+  }
+
+  @action
+  Future<FirebaseUser> getUser() async {
     return _loginRepository.getUser();
   }
-
-}
-enum AuthStatus{
-  loading, login, logoff
 }

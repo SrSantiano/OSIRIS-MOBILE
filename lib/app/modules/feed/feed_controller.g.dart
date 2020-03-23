@@ -33,6 +33,13 @@ mixin _$FeedController on _FeedControllerBase, Store {
     return _$getUserAsyncAction.run(() => super.getUser());
   }
 
+  final _$logOutAsyncAction = AsyncAction('logOut');
+
+  @override
+  Future<dynamic> logOut() {
+    return _$logOutAsyncAction.run(() => super.logOut());
+  }
+
   @override
   String toString() {
     final string = 'user: ${user.toString()}';

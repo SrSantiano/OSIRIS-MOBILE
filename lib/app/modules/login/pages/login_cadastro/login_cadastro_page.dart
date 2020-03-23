@@ -113,7 +113,7 @@ class _LoginCadastroPageState
 
                         //letra: Text("G" , style: TextStyle(fontSize: 35, fontWeight: FontWeight.w800),),
 
-                        onPressed: () {},
+                        onPressed: controller.loginWithGoogle,
                       ),
                     ],
                   ),

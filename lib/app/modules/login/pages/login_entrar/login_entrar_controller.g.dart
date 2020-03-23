@@ -43,21 +43,21 @@ mixin _$LoginEntrarController on _LoginEntrarControllerBase, Store {
     }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
   }
 
-  final _$loadingAtom = Atom(name: '_LoginEntrarControllerBase.loading');
+  final _$logadoAtom = Atom(name: '_LoginEntrarControllerBase.logado');
 
   @override
-  bool get loading {
-    _$loadingAtom.context.enforceReadPolicy(_$loadingAtom);
-    _$loadingAtom.reportObserved();
-    return super.loading;
+  bool get logado {
+    _$logadoAtom.context.enforceReadPolicy(_$logadoAtom);
+    _$logadoAtom.reportObserved();
+    return super.logado;
   }
 
   @override
-  set loading(bool value) {
-    _$loadingAtom.context.conditionallyRunInAction(() {
-      super.loading = value;
-      _$loadingAtom.reportChanged();
-    }, _$loadingAtom, name: '${_$loadingAtom.name}_set');
+  set logado(bool value) {
+    _$logadoAtom.context.conditionallyRunInAction(() {
+      super.logado = value;
+      _$logadoAtom.reportChanged();
+    }, _$logadoAtom, name: '${_$logadoAtom.name}_set');
   }
 
   final _$userAtom = Atom(name: '_LoginEntrarControllerBase.user');
@@ -89,14 +89,28 @@ mixin _$LoginEntrarController on _LoginEntrarControllerBase, Store {
   final _$loginWithFacebookAsyncAction = AsyncAction('loginWithFacebook');
 
   @override
-  Future<dynamic> loginWithFacebook() {
+  Future<void> loginWithFacebook() {
     return _$loginWithFacebookAsyncAction.run(() => super.loginWithFacebook());
+  }
+
+  final _$getUserAsyncAction = AsyncAction('getUser');
+
+  @override
+  Future<dynamic> getUser() {
+    return _$getUserAsyncAction.run(() => super.getUser());
+  }
+
+  final _$logoAsyncAction = AsyncAction('logo');
+
+  @override
+  Future<dynamic> logo() {
+    return _$logoAsyncAction.run(() => super.logo());
   }
 
   @override
   String toString() {
     final string =
-        'email: ${email.toString()},password: ${password.toString()},loading: ${loading.toString()},user: ${user.toString()}';
+        'email: ${email.toString()},password: ${password.toString()},logado: ${logado.toString()},user: ${user.toString()}';
     return '{$string}';
   }
 }

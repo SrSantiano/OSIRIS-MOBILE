@@ -22,7 +22,16 @@ class _LoginEntrarPageState
   String password;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    controller.logo(); 
+
+  }
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ModalProgressHUD(
@@ -102,7 +111,7 @@ class _LoginEntrarPageState
 
                         //letra: Text("G" , style: TextStyle(fontSize: 35, fontWeight: FontWeight.w800),),
 
-                        onPressed: () {},
+                        onPressed: controller.loginWithGoogle,
                       ),
                     ],
                   ),

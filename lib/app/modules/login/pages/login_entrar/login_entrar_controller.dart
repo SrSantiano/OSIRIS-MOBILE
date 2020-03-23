@@ -11,7 +11,7 @@ class LoginEntrarController = _LoginEntrarControllerBase
 
 abstract class _LoginEntrarControllerBase with Store {
   LoginRepositoryController _auth = Modular.get();
-  
+
   @observable
   String email = '';
 
@@ -19,10 +19,7 @@ abstract class _LoginEntrarControllerBase with Store {
   String password = '';
 
   @observable
-  bool loading = false;
-  
-  @observable
-  FirebaseUser user;
+  bool logado = false;
 
   @action
   Future<void> loginWithEmailAndPassword() async {
@@ -34,14 +31,40 @@ abstract class _LoginEntrarControllerBase with Store {
   }
 
   @action
-  Future loginWithFacebook() async {
+  Future<void> loginWithFacebook() async {
     try {
-      loading = true;
-     user =  await  _auth.loginWithFacebook();
-      Modular.to.pushReplacementNamed('/feed');
+      if (await _auth.loginWithFacebook() != null) {
+        Modular.to.pushReplacementNamed('/feed');
+      }
     } catch (e) {
-      loading = false;
+      print(e);
+    }
+  }
+
+  Future<void> loginWithGoogle() async{
+
+    try {
+      if(await _auth.loginWithGoogle() != null){
+        Modular.to.pushReplacementNamed('/feed');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+
+  @observable
+  FirebaseUser user;
+
+  @action
+  Future getUser() async {
+    return user = await _auth.getUser();
+  }
+
+  @action
+  Future logo() async {
+    if (await _auth.getUser() != null) {
+      Modular.to.pushReplacementNamed('/feed');
     }
   }
 }
-

@@ -17,4 +17,10 @@ abstract class _FeedControllerBase with Store {
   Future getUser() async {
     return user = await _auth.getUser();
   }
+
+  @action
+  Future logOut() async{
+    await _auth.logOut();
+    Modular.to.pushReplacementNamed('/');
+  }
 }
