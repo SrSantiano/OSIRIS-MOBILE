@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:osiris/app/modules/login/repository/login_repository_contracts.dart';
 
 class LoginRepository extends Disposable implements ILoginRepository {
-  final GoogleSgnIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FacebookLogin _facebookLogin = FacebookLogin();
   final FirebaseAuth _auth;
 
