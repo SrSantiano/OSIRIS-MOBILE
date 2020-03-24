@@ -1,12 +1,12 @@
 class Tema {
   String corTextoTitulo;
   String corPrimaria;
-  String corPrimariaDark;
   String corPrimariaLight;
+  String corPrimariaDark;
   String corTextoPrimario;
   String corSecundaria;
-  String corSecundariaDark;
   String corSecundariaLight;
+  String corSecundariaDark;
   String corTextoSecundario;
 
   Tema({
@@ -20,4 +20,15 @@ class Tema {
     this.corSecundariaLight,
     this.corTextoSecundario,
   });
+
+  Tema.fromMap(Map<String, dynamic> map)
+      : corTextoTitulo = map['corTextoTitulo'],
+        corPrimaria = map['corPrimaria'],
+        corPrimariaDark = map['corPrimariaDark'],
+        corPrimariaLight = map['corPrimariaDark'],
+        corTextoPrimario = map['corTextoPrimario'],
+        corSecundaria = map['corSecundaria'],
+        corSecundariaDark = map['corSecundariaDark'],
+        corSecundariaLight = map['corSecundariaLight'],
+        corTextoSecundario = map['corTextoSecundario'];
 }
