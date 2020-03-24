@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:osiris/app/models/Loja.dart';
@@ -13,5 +14,5 @@ abstract class _LojaRepositoryControllerBase with Store {
 
   Stream<List<Loja>> getLojas() {
     return _lojaRepository.getLojas();
-  }
+  } 
 }

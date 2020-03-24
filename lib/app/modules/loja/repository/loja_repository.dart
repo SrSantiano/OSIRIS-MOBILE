@@ -7,20 +7,6 @@ class LojaRepository implements ILojaRepository {
 
   LojaRepository(this.firestore);
 
-/*   @override
-  Stream<List<Loja>> getLojas() {
-    return firestore
-        .collection('Loja')
-        .where('usuarioAtivo', isEqualTo: true)
-        //posicionar por abertos
-        .snapshots()
-        .map((query) {
-      return query.documents.map((doc) {
-        return Loja.fromDocument(doc);
-      }).toList();
-    });
-  } */
-
   @override
   Stream<List<Loja>> getLojas() {
     return firestore
@@ -33,5 +19,13 @@ class LojaRepository implements ILojaRepository {
         return Loja.fromDocument(doc);
       }).toList();
     });
+  }
+
+  @override
+  Stream<QuerySnapshot> getLojasStream() {
+    return firestore
+        .collection('Loja')
+        .where('usuarioAtivo', isEqualTo: true)
+        .snapshots();
   }
 }

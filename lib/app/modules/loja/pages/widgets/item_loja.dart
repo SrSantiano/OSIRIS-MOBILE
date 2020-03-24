@@ -15,7 +15,7 @@ class ItemLoja extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Container(
-            height: 100,
+            height: 110,
             decoration: BoxDecoration(
               color: Color(
                 loja.tema.corPrimaria.toIntFlutterColor(),
@@ -27,7 +27,7 @@ class ItemLoja extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: Color(0x90000000),
-                  blurRadius: 15.0,
+                  blurRadius: 5.0,
                   spreadRadius: 1.0,
                   offset: Offset(0.0, 5.0),
                 ),
@@ -48,6 +48,7 @@ class ItemLoja extends StatelessWidget {
                         child: CachedNetworkImage(
                           imageUrl: loja.publicacaoImagemInicial,
                           fit: BoxFit.cover,
+                          useOldImageOnUrlChange: true,
                         ),
                       ),
                       Container(
@@ -76,6 +77,7 @@ class ItemLoja extends StatelessWidget {
                               child: CachedNetworkImage(
                                 imageUrl: loja.imagemPerfil,
                                 fit: BoxFit.cover,
+                                useOldImageOnUrlChange: true,
                               ),
                             ),
                           ),
@@ -104,6 +106,7 @@ class ItemLoja extends StatelessWidget {
                               loja.tema.corTextoPrimario.toIntFlutterColor(),
                             ),
                           ),
+                          textAlign: TextAlign.right,
                         ),
                         Text(
                           loja.categoriaPrimaria,
@@ -123,7 +126,7 @@ class ItemLoja extends StatelessWidget {
             ),
           ),
           Container(
-            height: 100,
+            height: 110,
             width: double.infinity,
             child: RawMaterialButton(
               splashColor: Color(0x50FFFFFF),

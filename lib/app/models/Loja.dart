@@ -58,27 +58,26 @@ class Loja extends Usuario {
             telefone2: telefone2);
 
   factory Loja.fromDocument(DocumentSnapshot doc) {
-    print('A rede é: ${doc['redeSocial']}');
-
     return Loja(
-      nome: doc['nome'],
-      email: doc['email'],
-      telefone1: doc['telefone1'],
-      telefone2: doc['telefone2'],
-      uidLojista: doc['uidLojista'],
-      nomeFantasia: doc['nomeFantasia'],
-      possuiLojaFisica: doc['possuiLojaFisica'],
-      categoriaPrimaria: doc['categoriaPrimaria'],
-      avaliacao: doc['avaliacao'],
-      imagemPerfil: doc['imagemPerfil'],
-      publicacaoImagemInicial: doc['publicacaoImagemInicial'],
-      tema: Tema.fromMap(doc['tema']),
-      taxaEntrega: doc['taxaEntrega'],
-      estaAberto: doc['estaAberto'],
-      redeSocial: [RedeSocial.fromDoc(doc['redeSocial'])],
-      pagamentoCartao: doc['pagamentoCartao'],
-      tempoEntrega: doc['tempoEntrega'],
+      nome: doc['nome'] as String,
+      email: doc['email'] as String,
+      telefone1: doc['telefone1'] as String,
+      telefone2: doc['telefone2'] as String,
+      uidLojista: doc['uidLojista'] as String,
+      nomeFantasia: doc['nomeFantasia'] as String,
+      possuiLojaFisica: doc['possuiLojaFisica'] as bool,
+      categoriaPrimaria: doc['categoriaPrimaria'] as String,
+      avaliacao: doc['avaliacao'] as String,
+      imagemPerfil: doc['imagemPerfil'] as String,
+      publicacaoImagemInicial: doc['publicacaoImagemInicial'] as String,
+      tema: Tema.fromMap(doc['tema'] as Map<String, dynamic>),
+      taxaEntrega: doc['taxaEntrega'] as String ,
+      estaAberto: doc['estaAberto'] as bool,
+      redeSocial: (doc['redeSocial'] as List<dynamic>).map<RedeSocial>((value) => RedeSocial.fromMap(value)).toList(),
+      pagamentoCartao: doc['pagamentoCartao'] as bool,
+      tempoEntrega: doc['tempoEntrega'] as String,
     );
+
   }
 
   Tema get tema => this._tema;

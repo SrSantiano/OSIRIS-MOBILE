@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 import 'package:osiris/app/models/Loja.dart';
 import 'package:osiris/app/modules/loja/repository/loja_repository_contracts.dart';
@@ -21,5 +22,9 @@ abstract class _LojaPageControllerBase with Store {
   @action
   getLojas() {
     lojas = repository.getLojas().asObservable();
+  }
+
+  Stream<QuerySnapshot> getLojasStream(){
+    return repository.getLojasStream();
   }
 }

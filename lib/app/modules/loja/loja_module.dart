@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:osiris/app/modules/login/repository/login_repository_controller.dart';
 import 'package:osiris/app/modules/loja/pages/lojas_page/loja_page.dart';
 import 'package:osiris/app/modules/loja/pages/lojas_page/loja_page_controller.dart';
 import 'package:osiris/app/modules/loja/repository/loja_repository.dart';
