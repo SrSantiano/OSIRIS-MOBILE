@@ -1,3 +1,4 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 part 'feed_controller.g.dart';
@@ -12,4 +13,5 @@ abstract class _FeedControllerBase with Store {
   void increment() {
     value++;
   }
+
 }

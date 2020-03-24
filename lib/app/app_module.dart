@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:osiris/app/app_widget.dart';
 import 'package:osiris/app/modules/feed/feed_module.dart';
-import 'package:osiris/app/modules/login/login_module.dart';
+//import 'package:osiris/app/modules/login/login_module.dart';
 import 'package:osiris/app/modules/login/repository/login_repository.dart';
 import 'package:osiris/app/modules/login/repository/login_repository_contracts.dart';
 

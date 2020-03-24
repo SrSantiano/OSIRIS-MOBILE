@@ -1,8 +1,8 @@
 import 'package:osiris/app/models/Usuario.dart';
 
 class Cliente extends Usuario {
-  String _uidCliente;
-  int _dataNascimento;
+  String uidCliente;
+  int dataNascimento;
 
   Cliente();
 
@@ -13,6 +13,6 @@ class Cliente extends Usuario {
       String telefone1,
       String telefone2})
       : super.novoUsuario(nome, email, telefone1, telefone2) {
-    this._dataNascimento = dataNascimento;
+    this.dataNascimento = dataNascimento;
   }
 }
