@@ -43,7 +43,7 @@ class FoodItems extends StatelessWidget {
                       ),
                       child: InkWell(
                         onTap: (){
-                          Modular.to.pushNamed('/FoodDetails');
+                          Modular.to.pushNamed('/FoodDetails', arguments: comida);
                         },
                         child: 
                            Hero(
