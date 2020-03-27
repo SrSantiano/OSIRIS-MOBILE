@@ -15,11 +15,7 @@ class FoodDetails extends StatelessWidget {
         ),
         backgroundColor: Colors.amber,
       ),
-      appBar: AppBar(
-        title: Text(comida.nome),
-        backgroundColor: Colors.amber,
-        elevation: 0,
-      ),
+      
       body: Column(
         children: <Widget>[
           Hero(
@@ -28,23 +24,38 @@ class FoodDetails extends StatelessWidget {
               children: <Widget>[
                 Container(
                     height: 300,
-                    width: 500,
+                    width: double.infinity,
                     color: Colors.yellow,
-                    child: Image.network(
-                      comida.imagem,
-                      fit: BoxFit.cover,
-                    )),
+                    child:  Image.network(
+                        comida.imagem,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                 Positioned(
-                  bottom: 5,
+                  bottom: 10,
                   child: Container(
-                    color: Colors.black87,
+                    color: Colors.black38,
                     height: 50,
-                    width: 150,
+                    width: 410,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          comida.nome,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+
+                          ),
+                          )
+                      ]
+                    )
                   ),
                 )
               ],
             ),
           ),
+
         ],
       ),
     );

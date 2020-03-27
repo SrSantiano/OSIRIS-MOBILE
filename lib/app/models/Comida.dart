@@ -9,7 +9,7 @@ class Comida {
   List<String> adicionais;
   double avaliacao;
   int id;
-  bool alinhamento;
+  bool alinhamento = true;
 
   Comida({
     this.nome,

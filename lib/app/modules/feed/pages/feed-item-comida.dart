@@ -94,7 +94,7 @@ class FoodItems extends StatelessWidget {
                                     children: [
                                       TextSpan(text: "Fornecido por: " ),
                                       TextSpan(
-                                          text: comida.loja.nome,
+                                          text: comida.loja.nomeFantasia,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700))
                                     ]),

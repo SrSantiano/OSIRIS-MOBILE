@@ -12,7 +12,7 @@ var comidas = [
     imagem: 'https://valenews.com.br/wp-content/uploads/2019/12/FestivalBurguer-e-BeerShoppingJdOriente13122019.jpg',
     avaliacao: 4.7,
     id: 10,
-    alinhamento: true
+    ///alinhamento: true
   ),
   Comida(
     loja: lojas[1],
@@ -21,7 +21,7 @@ var comidas = [
     imagem: 'https://valenews.com.br/wp-content/uploads/2019/12/FestivalBurguer-e-BeerShoppingJdOriente13122019.jpg',
     avaliacao: 4.5,
     id: 20,
-    alinhamento: false
+   // alinhamento: false
   ),
   Comida(
     loja: lojas[1],
@@ -30,7 +30,7 @@ var comidas = [
     imagem: 'https://valenews.com.br/wp-content/uploads/2019/12/FestivalBurguer-e-BeerShoppingJdOriente13122019.jpg',
     avaliacao: 4.5,
     id: 30,
-    alinhamento: true
+   // alinhamento: true
   ),
   Comida(
     loja: lojas[1],
@@ -39,7 +39,7 @@ var comidas = [
     imagem: 'https://valenews.com.br/wp-content/uploads/2019/12/FestivalBurguer-e-BeerShoppingJdOriente13122019.jpg',
     avaliacao: 4.5,
     id: 40,
-    alinhamento: false
+   // alinhamento: false
   ),
   Comida(
     loja: lojas[1],
@@ -48,7 +48,7 @@ var comidas = [
     imagem: 'https://valenews.com.br/wp-content/uploads/2019/12/FestivalBurguer-e-BeerShoppingJdOriente13122019.jpg',
     avaliacao: 4.5,
     id: 50,
-    alinhamento: true
+   // alinhamento: true
   ),
   Comida(
     loja: lojas[0],
@@ -57,7 +57,7 @@ var comidas = [
     imagem: 'https://i.ytimg.com/vi/xXS47doWa3Y/maxresdefault.jpg',
     avaliacao: 2.9,
     id: 60,
-    alinhamento: false
+   // alinhamento: false
   ),
 
   
