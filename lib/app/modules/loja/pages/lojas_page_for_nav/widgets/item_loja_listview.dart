@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:osiris/app/models/Loja.dart';
-import 'package:osiris/app/modules/loja/pages/widgets/item_loja.dart';
+import 'package:osiris/app/modules/loja/pages/lojas_page_for_nav/widgets/item_loja.dart';
 
 class ItemLojaListView extends StatelessWidget {
   final Stream<QuerySnapshot> streamLojas;

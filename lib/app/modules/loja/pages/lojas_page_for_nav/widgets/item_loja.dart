@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:osiris/app/models/Loja.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:osiris/app/modules/loja/repository/loja_repository_controller.dart';
 
 class ItemLoja extends StatelessWidget {
   final Loja loja;
+  final LojaRepositoryController lojaRepositoryController = Modular.get();
 
-  const ItemLoja({Key key, this.loja}) : super(key: key);
+ ItemLoja({Key key, this.loja}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +29,9 @@ class ItemLoja extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Color(0x90000000),
-                  blurRadius: 5.0,
-                  spreadRadius: 1.0,
+                  color: Color(0xff8a795d),
+                  blurRadius: 20.0,
+                  spreadRadius: -8.0,
                   offset: Offset(0.0, 5.0),
                 ),
               ],
@@ -136,7 +139,10 @@ class ItemLoja extends StatelessWidget {
                   bottomRight: Radius.circular(15),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                lojaRepositoryController.uidLojista = loja.uidLojista;
+                Modular.to.pushNamed('/loja');
+              },
             ),
           ),
         ],

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:decimal/decimal.dart';
 import 'package:osiris/app/models/Usuario.dart';
+import 'Categoria.dart';
 import 'RedeSocial.dart';
 import 'Tema.dart';
 
@@ -22,8 +23,6 @@ class Loja extends Usuario {
   Loja(
       {String nome,
       String email,
-      //bool usuarioAtivo, //será??
-      //String dataHoraCadastro,
       String telefone1,
       String telefone2,
       String uidLojista,
@@ -71,13 +70,14 @@ class Loja extends Usuario {
       imagemPerfil: doc['imagemPerfil'] as String,
       publicacaoImagemInicial: doc['publicacaoImagemInicial'] as String,
       tema: Tema.fromMap(doc['tema'] as Map<String, dynamic>),
-      taxaEntrega: doc['taxaEntrega'] as String ,
+      taxaEntrega: doc['taxaEntrega'] as String,
       estaAberto: doc['estaAberto'] as bool,
-      redeSocial: (doc['redeSocial'] as List<dynamic>).map<RedeSocial>((value) => RedeSocial.fromMap(value)).toList(),
+      redeSocial: (doc['redeSocial'] as List<dynamic>)
+          .map<RedeSocial>((value) => RedeSocial.fromMap(value))
+          .toList(),
       pagamentoCartao: doc['pagamentoCartao'] as bool,
       tempoEntrega: doc['tempoEntrega'] as String,
     );
-
   }
 
   Tema get tema => this._tema;
@@ -85,5 +85,6 @@ class Loja extends Usuario {
   String get imagemPerfil => this._imagemPerfil;
   String get nomeFantasia => this._nomeFantasia;
   String get categoriaPrimaria => this._categoriaPrimaria;
-  List<RedeSocial> get redeSocial => _redeSocial;
+  List<RedeSocial> get redeSocial => this._redeSocial;
+  String get uidLojista => this._uidLojista;
 }

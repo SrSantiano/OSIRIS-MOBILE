@@ -1,0 +1,4 @@
+lib/app/modules/loja/pages/loja_cardapio/loja_cardapio_page.dart
+test/app/modules/loja/pages/loja_cardapio/loja_cardapio_page_test.dart
+lib/app/modules/loja/pages/loja_cardapio/loja_cardapio_controller.dart
+test/app/modules/loja/pages/loja_cardapio/loja_cardapio_controller_test.dart
