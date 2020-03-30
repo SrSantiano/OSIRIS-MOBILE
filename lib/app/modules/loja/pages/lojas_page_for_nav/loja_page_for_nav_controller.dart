@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 import 'package:osiris/app/modules/loja/repository/loja_repository_contracts.dart';
 
