@@ -1,21 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:osiris/app/models/Loja.dart';
 import 'package:osiris/app/modules/loja/repository/loja_repository_contracts.dart';
 
 import 'loja_repository_controller.dart';
 
-class LojaRepository implements ILojaRepository {
+class LojaRepository extends Disposable implements ILojaRepository {
   final Firestore firestore;
   final LojaRepositoryController _controller = Modular.get();
 
   LojaRepository(this.firestore);
 
   @override
-  Stream<QuerySnapshot> getLojasStream() {
+  Stream<List<Loja>> getLojas() {
     return firestore
         .collection('Loja')
         .where('usuarioAtivo', isEqualTo: true)
-        .snapshots();
+        .snapshots()
+        .map((query) {
+      return query.documents.map((doc) {
+        return Loja.fromDocument(doc);
+      }).toList();
+    });
   }
 
   Stream<QuerySnapshot> getCardapio() {
@@ -50,4 +56,7 @@ class LojaRepository implements ILojaRepository {
           .snapshots();
     }).toList();
   }
+
+  @override
+  void dispose() {}
 }

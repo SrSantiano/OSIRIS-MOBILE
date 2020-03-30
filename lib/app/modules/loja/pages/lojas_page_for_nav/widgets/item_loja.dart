@@ -9,7 +9,7 @@ class ItemLoja extends StatelessWidget {
   final Loja loja;
   final LojaRepositoryController lojaRepositoryController = Modular.get();
 
- ItemLoja({Key key, this.loja}) : super(key: key);
+  ItemLoja({Key key, @required this.loja}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
