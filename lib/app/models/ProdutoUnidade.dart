@@ -35,7 +35,8 @@ class ProdutoUnidade extends Produto implements IProduto {
 
   factory ProdutoUnidade.fromDocument(DocumentSnapshot doc) {
     return ProdutoUnidade(
-        idProduto: doc['idProduto'] as String,
+        //idProduto: doc['idProduto'] as String,
+        idProduto: doc.documentID,
         nome: doc['nome'] as String,
         imagem: doc['imagem'] as String,
         ingredientes: (doc['ingredientes'] as List<dynamic>)

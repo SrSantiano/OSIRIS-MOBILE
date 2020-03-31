@@ -1,110 +1,129 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firestore_ui/animated_firestore_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:osiris/app/models/Categoria.dart';
-import 'package:osiris/app/models/ProdutoUnidade.dart';
-import 'package:osiris/app/modules/loja/pages/loja_cardapio/loja_cardapio_controller.dart';
-import 'package:osiris/app/modules/loja/pages/loja_cardapio/widgets/item_produto_un.dart';
-import 'package:osiris/app/modules/loja/repository/loja_repository_controller.dart';
+import 'package:osiris/app/modules/loja/pages/loja_cardapio/widgets/streambuilder_produto.dart';
+import 'package:osiris/app/modules/loja/pages/loja_page/loja_page_controller.dart';
 
-class LojaCardapioPage extends StatelessWidget {
-  final LojaRepositoryController _lojaRepositoryController = Modular.get();
-  final LojaCardapioController _lojaCardapioController = Modular.get();
-
+class LojaCardapioPage extends StatefulWidget {
+  final String uidLojista;
   final ScrollController scrollController;
-  List<String> listCategoria = [];
 
-  LojaCardapioPage({Key key, @required this.scrollController})
-      : super(key: key);
+  const LojaCardapioPage({
+    Key key,
+    @required this.uidLojista,
+    @required this.scrollController,
+  }) : super(key: key);
+
+  @override
+  _LojaCardapioPageState createState() => _LojaCardapioPageState();
+}
+
+class _LojaCardapioPageState
+    extends ModularState<LojaCardapioPage, LojaPageController>
+    with TickerProviderStateMixin {
+  Stream<List<Categoria>> streamCategoria;
+  TabController _tabController;
+  final _pageController = PageController(initialPage: 0);
+
+  @override
+  initState() {
+    streamCategoria = controller.repository.getCategorias(widget.uidLojista);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Flexible(
-            flex: 2,
-            child: FirestoreAnimatedList(
-              key: ValueKey("categoriaList"),
-              onLoaded: (snapshot) {
-                _lojaRepositoryController.idCategoria =
-                    snapshot.documents.map((value) {
-                  return value['idCategoria'] as String;
-                }).toList();
-              },
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              query: _lojaCardapioController.repository.getCardapio(),
-              itemBuilder: (BuildContext context, DocumentSnapshot snapshot,
-                  Animation<double> animation, int index) {
-                Categoria categoria = Categoria.fromDocument(snapshot);
-                return GestureDetector(
-                  onTap: () {
-                    print("idCategoria ${categoria.idCategoria}");
-                  },
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: AnimatedDefaultTextStyle(
+    return Column(
+      children: <Widget>[
+        Flexible(
+          flex: 2,
+          child: Container(
+            child: StreamBuilder<List<Categoria>>(
+              stream: streamCategoria,
+              builder: (context, snapshot) {
+                //lembrar de colocar os connection state;
+                if (snapshot.hasError) return Text('${snapshot.error}');
+
+                _tabController = TabController(
+                  length: snapshot.data.length,
+                  initialIndex: 0,
+                  vsync: this,
+                );
+
+                return Center(
+                  child: TabBar(
+                    onTap: (newIndex) {
+                      _tabController.animateTo(
+                        newIndex,
+                        duration: Duration(milliseconds: 500),
                         curve: Curves.ease,
-                        duration: const Duration(milliseconds: 300),
-                        style: index == 0 //mobx
-                            ? GoogleFonts.raleway(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 18.0,
-                                letterSpacing: 0,
-                                color: Color(0xFF000000),
-                              )
-                            : GoogleFonts.raleway(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 18.0,
-                                letterSpacing: 0,
-                                color: Color(0x70000000),
-                              ),
-                        child: AutoSizeText(
-                          categoria.nome,
-                        ),
-                      ),
+                      );
+                      _pageController.animateToPage(
+                        newIndex,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      );
+                    },
+                    indicatorColor: Colors.amber,
+                    labelColor: Colors.blue,
+                    labelStyle: GoogleFonts.raleway(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18.0,
+                      letterSpacing: 0,
+                      color: Color(0xFF000000),
                     ),
+                    unselectedLabelStyle: GoogleFonts.raleway(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18.0,
+                      letterSpacing: 0,
+                    ),
+                    controller: _tabController,
+                    isScrollable: true,
+                    tabs: snapshot.data.map((categoria) {
+                      return Text(
+                        categoria.nome,
+                      );
+                    }).toList(),
                   ),
                 );
               },
             ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
           ),
-          Flexible(
-              flex: 8,
-              child: Observer(
-                builder: (context) {
-                  return PageView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: _lojaRepositoryController.idCategoria.length,
-                    itemBuilder: (context, position) {
-                      return FirestoreAnimatedList(
-                        key: ValueKey("produtosList"),
-                        controller: scrollController,
-                        query: _lojaCardapioController.repository
-                            .getProdutos2()[position],
-                        itemBuilder: (BuildContext context,
-                            DocumentSnapshot snapshot,
-                            Animation<double> animation,
-                            int index) {
-                          ProdutoUnidade produtoUnidade =
-                              ProdutoUnidade.fromDocument(snapshot);
-                          return ItemProdutoUn(
-                            produtoUnidade: produtoUnidade,
-                          );
-                        },
-                      );
-                    },
+        ),
+        Flexible(
+          flex: 10,
+          child: StreamBuilder<List<Categoria>>(
+            stream: streamCategoria,
+            builder: (context, snapshot) {
+              //lembrar de colocar os connection state;
+              if (snapshot.hasError) return Text('${snapshot.error}');
+              return PageView.builder(
+                controller: _pageController,
+                onPageChanged: (newIndex) {
+                  _tabController.animateTo(newIndex);
+                },
+                physics: BouncingScrollPhysics(),
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, position) {
+                  return StreamBuilderProduto(
+                    idCategoria: snapshot.data[position].idCategoria,
+                    uidLojista: widget.uidLojista,
+                    scrollController: widget.scrollController,
                   );
                 },
-              )),
-        ],
-      ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

@@ -8,7 +8,6 @@ import 'package:osiris/app/modules/feed/feed_module.dart';
 import 'package:osiris/app/modules/login/repository/login_repository.dart';
 import 'package:osiris/app/modules/login/repository/login_repository_contracts.dart';
 import 'package:osiris/app/modules/loja/loja_module.dart';
-import 'package:osiris/app/modules/loja/pages/loja_page/loja_page_controller.dart';
 import 'modules/feed/feed_controller.dart';
 import 'modules/feed/feed_module.dart';
 import 'modules/login/repository/login_repository_controller.dart';
@@ -18,7 +17,6 @@ class AppModule extends MainModule {
   List<Bind> get binds => [
         Bind((i) => AppController()),
         Bind((i) => LoginRepositoryController()),
-        Bind((i) => LojaPageController()),
         Bind<ILoginRepository>((i) => LoginRepository(FirebaseAuth.instance)),
         Bind((i) => FeedController())
       ];

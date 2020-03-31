@@ -14,6 +14,14 @@ class LojaPageForNav extends StatefulWidget {
 
 class _LojaPageForNavState
     extends ModularState<LojaPageForNav, LojaPageForNavController> {
+  Stream<List<Loja>> streamLojas;
+
+  @override
+  void initState() {
+    streamLojas = controller.repository.getLojas();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +29,7 @@ class _LojaPageForNavState
         title: Text(widget.title),
       ),
       body: StreamBuilder<List<Loja>>(
-        stream: controller.repository.getLojas(),
+        stream: streamLojas,
         builder: (BuildContext context, AsyncSnapshot<List<Loja>> snapshot) {
           if (snapshot.hasError) return new Text('Error: ${snapshot.error}');
           switch (snapshot.connectionState) {

@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:osiris/app/models/Categoria.dart';
 import 'package:osiris/app/models/Loja.dart';
+import 'package:osiris/app/models/ProdutoUnidade.dart';
 import 'package:osiris/app/modules/loja/repository/loja_repository_contracts.dart';
-
-import 'loja_repository_controller.dart';
 
 class LojaRepository extends Disposable implements ILojaRepository {
   final Firestore firestore;
-  final LojaRepositoryController _controller = Modular.get();
 
   LojaRepository(this.firestore);
 
@@ -24,39 +23,66 @@ class LojaRepository extends Disposable implements ILojaRepository {
     });
   }
 
-  Stream<QuerySnapshot> getCardapio() {
+  @override
+  Stream<List<Categoria>> getCategorias(String uidLojista) {
     return firestore
         .collection('Loja')
-        .document(_controller.uidLojista)
+        .document(uidLojista)
         .collection('Cardapio')
         .orderBy('ordem', descending: false)
-        .snapshots();
+        .snapshots()
+        .map((query) {
+      return query.documents.map((doc) {
+        return Categoria.fromDocument(doc);
+      }).toList();
+    });
   }
 
+/*   @override 
+  Future<int> numCategorias(String uidLojista) async {
+    QuerySnapshot numCategorias = await firestore
+        .collection('Loja')
+        .document(uidLojista)
+        .collection('Cardapio')
+        .getDocuments();
+    return numCategorias.documents.length;
+  } */
+
   @override
-  Stream<QuerySnapshot> getProdutos(String idCategoria) {
+  Stream<List<ProdutoUnidade>> getProdutos(
+      String uidLojista, String idCategoria) {
     return firestore
         .collection('Loja')
-        .document(_controller.uidLojista)
+        .document(uidLojista)
         .collection('Cardapio')
         .document(idCategoria)
         .collection('Produto')
-        .snapshots();
-  }
-
-  @override
-  List<Stream<QuerySnapshot>> getProdutos2() {
-    return _controller.idCategoria.map((str) {
-      return firestore
-          .collection('Loja')
-          .document(_controller.uidLojista)
-          .collection('Cardapio')
-          .document(str)
-          .collection('Produto')
-          .snapshots();
-    }).toList();
+        .snapshots()
+        .map((query) {
+      return query.documents.map((doc) {
+        return ProdutoUnidade.fromDocument(doc);
+      }).toList();
+    });
   }
 
   @override
   void dispose() {}
+
+/*    @override
+  List<Stream<List<ProdutoUnidade>>> getProdutos(
+      String uidLojista, List<String> categoriaIDs) {
+    return categoriaIDs.map((str) {
+      return firestore
+          .collection('Loja')
+          .document(str)
+          .collection('Produto')
+          .snapshots()
+          .map((query) {
+        return query.documents.map((doc) {
+          return ProdutoUnidade.fromDocument(doc);
+        }).toList();
+      });
+    }).toList();
+  }  */
+
 }

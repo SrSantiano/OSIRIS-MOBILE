@@ -3,11 +3,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:osiris/app/models/Loja.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:osiris/app/modules/loja/repository/loja_repository_controller.dart';
+import 'package:osiris/app/modules/loja/pages/loja_page/loja_page.dart';
 
 class ItemLoja extends StatelessWidget {
   final Loja loja;
-  final LojaRepositoryController lojaRepositoryController = Modular.get();
 
   ItemLoja({Key key, @required this.loja}) : super(key: key);
 
@@ -74,13 +73,16 @@ class ItemLoja extends StatelessWidget {
                           height: 60.0,
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              child: CachedNetworkImage(
-                                imageUrl: loja.imagemPerfil,
-                                fit: BoxFit.cover,
-                                useOldImageOnUrlChange: true,
+                            child: Hero(
+                              tag: loja.uidLojista,
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                child: CachedNetworkImage(
+                                  imageUrl: loja.imagemPerfil,
+                                  fit: BoxFit.cover,
+                                  useOldImageOnUrlChange: true,
+                                ),
                               ),
                             ),
                           ),
@@ -140,8 +142,8 @@ class ItemLoja extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                lojaRepositoryController.uidLojista = loja.uidLojista;
-                Modular.to.pushNamed('/loja');
+                // Modular.to.pushNamed('/loja/${loja.uidLojista}');
+                Modular.to.pushNamed('/loja', arguments: loja);
               },
             ),
           ),
