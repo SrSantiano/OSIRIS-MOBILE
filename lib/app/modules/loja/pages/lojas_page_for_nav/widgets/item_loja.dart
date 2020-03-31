@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:osiris/app/models/Loja.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:osiris/app/modules/loja/pages/loja_page/loja_page.dart';
+
 
 class ItemLoja extends StatelessWidget {
   final Loja loja;
@@ -74,7 +74,7 @@ class ItemLoja extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Hero(
-                              tag: loja.uidLojista,
+                              tag: '${loja.nomeFantasia}${loja.uidLojista}__heroTag',
                               child: ClipRRect(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
@@ -84,6 +84,7 @@ class ItemLoja extends StatelessWidget {
                                   useOldImageOnUrlChange: true,
                                 ),
                               ),
+                              transitionOnUserGestures: true
                             ),
                           ),
                         ),

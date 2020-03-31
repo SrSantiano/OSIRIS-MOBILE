@@ -57,7 +57,8 @@ class _LojaPageState extends ModularState<LojaPage, LojaPageController> {
                                 height: 50,
                                 width: 50,
                                 child: Hero(
-                                  tag: widget.loja.uidLojista,
+                                  tag:
+                                      '${widget.loja.nomeFantasia}${widget.loja.uidLojista}__heroTag',
                                   child: ClipRRect(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
@@ -67,6 +68,10 @@ class _LojaPageState extends ModularState<LojaPage, LojaPageController> {
                                       useOldImageOnUrlChange: true,
                                     ),
                                   ),
+                                  transitionOnUserGestures: true,
+                                  placeholderBuilder: (context, size, widget) {
+                                    return Opacity(opacity: 0.2, child: widget);
+                                  },
                                 ),
                               ),
                             ),
