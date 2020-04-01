@@ -9,7 +9,7 @@ class Comida {
   List<String> ingredientes;
   List<String> adicionais;
   double avaliacao;
-  int id;
+  String id;
   bool alinhamento = true;
 
   Comida({

@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:osiris/app/models/Comida.dart';
 import 'package:osiris/app/modules/feed/pages/widgets/feed-item-comida.dart';
 import 'package:osiris/app/modules/feed/pages/widgets/item-categoria.dart';
 import '../feed_controller.dart';
@@ -32,10 +35,21 @@ class _FeedPageState extends ModularState<FeedPage, FeedController> {
     });
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.listComida();
+  }
+
+  
   //use 'controller' variable to access controller
   @override
   Widget build(BuildContext context) {
     int _selectedIndex = 0;
+
+    controller.comidas.forEach((c) => print( c.id));
+
     return Stack(
       children: <Widget>[
         Container(
