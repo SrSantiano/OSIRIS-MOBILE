@@ -1,12 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:osiris/app/modules/feed/pages/feed-item-comida.dart';
-import 'package:osiris/app/modules/feed/pages/item-categoria.dart';
+import 'package:osiris/app/modules/feed/pages/widgets/feed-item-comida.dart';
+import 'package:osiris/app/modules/feed/pages/widgets/item-categoria.dart';
 import '../feed_controller.dart';
 import '../../../data/data-test.dart';
-
 
 class FeedPage extends StatefulWidget {
   final String title;
@@ -16,12 +16,11 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends ModularState<FeedPage, FeedController> {
-
-  changeState(item, items){
+  changeState(item, items) {
     setState(() {
       for (var i in items) {
-        if (i == item){
-          if (item.ativo == true){
+        if (i == item) {
+          if (item.ativo == true) {
             item.ativo = false;
           } else {
             item.ativo = true;
@@ -32,130 +31,141 @@ class _FeedPageState extends ModularState<FeedPage, FeedController> {
       }
     });
   }
+
   //use 'controller' variable to access controller
   @override
   Widget build(BuildContext context) {
-    int _selectedIndex = 0 ;
-        return Stack(
-          children: <Widget>[
-            Container(
-              color: Colors.white,
+    int _selectedIndex = 0;
+    return Stack(
+      children: <Widget>[
+        Container(
+          color: Colors.white,
+        ),
+        Scaffold(
+            bottomNavigationBar: BottomNavyBar(
+              selectedIndex: _selectedIndex,
+              showElevation: true, // use this to remove appBar's elevation
+              onItemSelected: (index) => setState(() {
+                _selectedIndex = index;
+                print(_selectedIndex);
+              }),
+              items: [
+                BottomNavyBarItem(
+                  textAlign: TextAlign.center,
+                  icon: Icon(Icons.apps),
+                  title: Text('Home'),
+                  activeColor: Colors.amber,
+                ),
+                BottomNavyBarItem(
+                    icon: Icon(Icons.store),
+                    title: Text('Lojas'),
+                    activeColor: Colors.amber),
+                BottomNavyBarItem(
+                    icon: Icon(Icons.monetization_on),
+                    title: Text('Promoções'),
+                    activeColor: Colors.amber),
+                BottomNavyBarItem(
+                    icon: Icon(Icons.favorite),
+                    title: Text('Favoritos'),
+                    activeColor: Colors.amber),
+              ],
             ),
-            Scaffold(
-                bottomNavigationBar: BottomNavyBar(
-                
-                selectedIndex: _selectedIndex,
-                showElevation: true, // use this to remove appBar's elevation
-                onItemSelected: (index) => setState(() {
-                            _selectedIndex = index;
-                            print(_selectedIndex);
-                  }),
-                items: [
-                  BottomNavyBarItem(
-                    textAlign: TextAlign.center,
-                    icon: Icon(Icons.apps),
-                    title: Text('Home'),
-                    activeColor: Colors.amber,
-                  ),
-                  BottomNavyBarItem(
-                      icon: Icon(Icons.store),
-                      title: Text('Lojas'),
-                      activeColor: Colors.amber
-                  ),
-                  BottomNavyBarItem(
-                      icon: Icon(Icons.monetization_on),
-                      title: Text('Promoções'),
-                      activeColor: Colors.amber
-                  ),
-                  BottomNavyBarItem(
-                      icon: Icon(Icons.favorite),
-                      title: Text('Favoritos'),
-                      activeColor: Colors.amber
-                  ),
-                ],
-              ),
             body: CustomScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
-            slivers: <Widget>[
-              SliverAppBar(
-                  leading: IconButton(icon: Icon(Icons.menu, color: Colors.amber,), onPressed: null),
-                  expandedHeight: 250.0,
-                  pinned: false,
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  flexibleSpace: FlexibleSpaceBar(
-                    // title: Text('Iporá Delivery'),
-                    centerTitle: true,
-                    background: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        
-                      ],
-                    )
-                    //   fit: BoxFit.cover,
-                    //  ),
-                  ),
-                  actions: <Widget>[
-                    IconButton(
-                      icon: const Icon(
-                        Icons.shopping_cart,
-                        color: Colors.amber,
+              physics: AlwaysScrollableScrollPhysics(),
+              slivers: <Widget>[
+                SliverAppBar(
+                    leading: IconButton(
+                        icon: Icon(
+                          Icons.menu,
+                          color: Colors.amber,
+                        ),
+                        onPressed: null),
+                    expandedHeight: 250.0,
+                    pinned: false,
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    flexibleSpace: FlexibleSpaceBar(
+                        // title: Text('Iporá Delivery'),
+                        centerTitle: true,
+                        background: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[],
+                        )
+                        //   fit: BoxFit.cover,
+                        //  ),
+                        ),
+                    actions: <Widget>[
+                      IconButton(
+                        icon: const Icon(
+                          Icons.shopping_cart,
+                          color: Colors.amber,
+                        ),
+                        tooltip: 'Add new entry',
+                        onPressed: () {},
                       ),
-                      tooltip: 'Add new entry',
-                      onPressed: (){},
+                    ]),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    Container(
+                      height: 200,
+                      padding: EdgeInsets.only(top: 20, left: 20),
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: categorias.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var item = categorias[index];
+                            //categorias[index].ativo =false;
+
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  changeState(item, categorias);
+                                });
+
+                                print(categorias[index].nome);
+                              },
+                              child: ItemCategoria(categorias[index]),
+                            );
+                          }),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      height: 2000,
+                      padding: EdgeInsets.only(
+                        top: 30,
+                      ),
+                      child: StreamBuilder(
+                          stream: Firestore.instance
+                              .collection("Comidas")
+                              .orderBy('avaliacao')
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.none:
+                              case ConnectionState.waiting:
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              default:
+                                List<DocumentSnapshot> documents =
+                                    snapshot.data.documents.reversed.toList();
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: 3,
+                                    itemBuilder: (context, index) {
+                                      return Text(
+                                          documents[index].data['nome']);
+                                    });
+                            }
+                          }),
                     ),
                   ]),
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  Container(
-                    height: 200,
-                    padding: EdgeInsets.only(top: 20, left: 20),
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: categorias.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          var item = categorias[index];
-                          //categorias[index].ativo =false;
-                          
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                changeState(item, categorias);
-                                
-                              });
-                              
-                              print(categorias[index].nome);
-                            },
-                            child: ItemCategoria(categorias[index]),
-                          );
-                        }),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    height: 2000,
-                    padding: EdgeInsets.only(
-                      top: 30,
-                    ),
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: comidas.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var item = comidas[index];
-                        if(index%2 != 0){
-                          comidas[index].alinhamento = false;
-                        }
-                        return  FoodItems(comidas[index]);
-                      
-                      },
-                    ),
-                  ),
-                ]),
-              )
-            ],
-        )),
+                )
+              ],
+            )),
       ],
     );
   }

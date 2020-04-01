@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:osiris/app/models/Loja.dart';
 
 class Comida {
@@ -22,5 +23,19 @@ class Comida {
     this.id,
     this.alinhamento = true
   });
+
+  Comida.fromDoc(DocumentSnapshot doc) {
+     
+      id: doc['id'];
+      nome: doc['name'];
+      imagem: doc['imagem'];
+      price: doc['valor'];
+      //ingredientes: doc['bio'] ?? '',
+      //adicionais: doc['email'],
+      //loja: doc['email'],
+      avaliacao: doc['avaliacao'];
+      alinhamento: doc['alinhamento'];
+    
+  }
 
 }

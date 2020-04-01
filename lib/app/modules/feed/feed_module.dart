@@ -1,7 +1,7 @@
 import 'package:osiris/app/models/Comida.dart';
 import 'package:osiris/app/modules/feed/feed_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:osiris/app/modules/feed/pages/feed-item-comida.dart';
+import 'package:osiris/app/modules/feed/pages/widgets/feed-item-comida.dart';
 import 'package:osiris/app/modules/feed/pages/feed-item-detalhes.dart';
 import 'package:osiris/app/modules/feed/pages/feed_page.dart';
 
