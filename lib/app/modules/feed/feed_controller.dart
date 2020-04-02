@@ -10,11 +10,11 @@ class FeedController = _FeedControllerBase with _$FeedController;
 abstract class _FeedControllerBase with Store {
   Firestore firestore = Firestore.instance;
 
-  @observable
-  List<Comida> comidas = List();
+ 
 
-  @action
+  
   Future<List<Comida>> listComida() async {
+    List<Comida> comidas = List();
     QuerySnapshot querySnapshot =
         await firestore.collection("Comidas").getDocuments();
 

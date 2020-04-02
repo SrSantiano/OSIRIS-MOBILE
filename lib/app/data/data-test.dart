@@ -4,7 +4,7 @@ import 'package:osiris/app/models/Comida.dart';
 import 'package:osiris/app/models/Loja.dart';
 import 'package:flutter/material.dart';
 
-var comidas = [
+/* var comidass = [
   Comida(
     loja: lojas[0],
     nome: 'Bacon Duplo',
@@ -58,11 +58,11 @@ var comidas = [
     avaliacao: 2.9,
    
    // alinhamento: false
-  ),
+  ), */
 
   
 
-];
+
 
 List<Loja> lojas = [
   Loja(

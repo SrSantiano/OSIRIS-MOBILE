@@ -35,20 +35,12 @@ class _FeedPageState extends ModularState<FeedPage, FeedController> {
     });
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    controller.listComida();
-  }
-
-  
   //use 'controller' variable to access controller
   @override
   Widget build(BuildContext context) {
     int _selectedIndex = 0;
 
-    controller.comidas.forEach((c) => print( c.id));
+    
 
     return Stack(
       children: <Widget>[
@@ -146,36 +138,40 @@ class _FeedPageState extends ModularState<FeedPage, FeedController> {
                       height: 15,
                     ),
                     Container(
-                      height: 2000,
-                      padding: EdgeInsets.only(
-                        top: 30,
-                      ),
-                      child: StreamBuilder(
-                          stream: Firestore.instance
-                              .collection("Comidas")
-                              .orderBy('avaliacao')
-                              .snapshots(),
-                          builder: (context, snapshot) {
-                            switch (snapshot.connectionState) {
-                              case ConnectionState.none:
-                              case ConnectionState.waiting:
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              default:
-                                List<DocumentSnapshot> documents =
-                                    snapshot.data.documents.reversed.toList();
-                                return ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: 3,
-                                    itemBuilder: (context, index) {
-                                      return Text(
-                                          documents[index].data['nome']);
-                                    });
-                            }
-                          }),
-                    ),
+                         height: 2000,
+                        padding: EdgeInsets.only(
+                          top: 30,
+                        ),
+                        child: FutureBuilder<List<Comida>>(
+                            future: controller.listComida(),
+                            builder: (context, snapshot) {
+                              switch (snapshot.connectionState) {
+                                case ConnectionState.none:
+                                case ConnectionState.waiting:
+                                  return Center(
+                                    child: Column(children: <Widget>[
+                                      Text('Carregando Itens'),
+                                      CircularProgressIndicator()
+                                    ]),
+                                  );
+                                  break;
+                                case ConnectionState.active:
+                                case ConnectionState.done:
+                                  return ListView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: snapshot.data.length,
+                                      itemBuilder: (context, index) {
+                                        List<Comida> listaComidasFirebase =
+                                            snapshot.data;
+                                        Comida comida =
+                                            listaComidasFirebase[index];
+                                        if(index % 2 == 0){
+                                          comida.alinhamento = false;
+                                        }
+                                        return FoodItems(comida);
+                                      });
+                              }
+                            })),
                   ]),
                 )
               ],

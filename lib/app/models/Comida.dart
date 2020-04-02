@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:osiris/app/models/Loja.dart';
 
 class Comida {
-  Loja loja;
+  String loja;
   String nome;
   double price;
   String imagem;

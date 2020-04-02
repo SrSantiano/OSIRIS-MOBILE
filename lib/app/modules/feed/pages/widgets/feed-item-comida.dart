@@ -77,7 +77,7 @@ class FoodItems extends StatelessWidget {
                                         fontSize: 18,
                                       )),
                                 ),
-                                Text('R\$ ' + comida.price.toString(),
+                                Text('R\$ ' + comida.price.toString() + '0',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 18,
@@ -94,7 +94,7 @@ class FoodItems extends StatelessWidget {
                                     children: [
                                       TextSpan(text: "Fornecido por: " ),
                                       TextSpan(
-                                          text: comida.loja.nomeFantasia,
+                                          text: comida.loja,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700))
                                     ]),
