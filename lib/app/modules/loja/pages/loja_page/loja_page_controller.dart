@@ -9,5 +9,4 @@ abstract class _LojaPageControllerBase with Store {
   final ILojaRepository repository;
 
   _LojaPageControllerBase(ILojaRepository this.repository);
-
 }

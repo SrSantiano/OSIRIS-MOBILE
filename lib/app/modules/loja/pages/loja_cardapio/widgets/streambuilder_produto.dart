@@ -7,13 +7,11 @@ import 'package:osiris/app/modules/loja/pages/loja_page/loja_page_controller.dar
 class StreamBuilderProduto extends StatefulWidget {
   final String uidLojista;
   final String idCategoria;
-  final ScrollController scrollController;
 
   const StreamBuilderProduto({
     Key key,
     @required this.uidLojista,
     @required this.idCategoria,
-    @required this.scrollController,
   }) : super(key: key);
 
   @override
@@ -33,19 +31,21 @@ class _StreamBuilderProdutoState
   }
 
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     return StreamBuilder<List<ProdutoUnidade>>(
       stream: streamProduto,
       builder: (context, snapshot) {
         if (!snapshot.hasData)
-          return Center(
-            child: CircularProgressIndicator(),
-          ); 
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         return Container(
           color: Colors.white,
           child: ListView.separated(
             separatorBuilder: (BuildContext context, int index) => Divider(),
-            controller: widget.scrollController,
             itemCount: snapshot.data.length,
             itemBuilder: (context, index) {
               return new ItemProdutoUn(

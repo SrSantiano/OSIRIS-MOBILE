@@ -38,7 +38,7 @@ class LojaRepository extends Disposable implements ILojaRepository {
     });
   }
 
-/*   @override 
+/*   @override
   Future<int> numCategorias(String uidLojista) async {
     QuerySnapshot numCategorias = await firestore
         .collection('Loja')

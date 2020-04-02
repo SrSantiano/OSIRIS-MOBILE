@@ -7,5 +7,5 @@ abstract class ILojaRepository {
   Stream<List<Categoria>> getCategorias(String uidLojista);
   Stream<List<ProdutoUnidade>> getProdutos(
       String uidLojista, String idCategoria);
-  //Future<int> numCategorias(String uidLojista);
+ //  Future<int> numCategorias(String uidLojista); 
 }

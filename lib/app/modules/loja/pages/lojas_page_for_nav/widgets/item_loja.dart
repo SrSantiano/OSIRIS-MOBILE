@@ -73,18 +73,14 @@ class ItemLoja extends StatelessWidget {
                           height: 60.0,
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Hero(
-                              tag: '${loja.nomeFantasia}${loja.uidLojista}__heroTag',
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: loja.imagemPerfil,
-                                  fit: BoxFit.cover,
-                                  useOldImageOnUrlChange: true,
-                                ),
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              child: CachedNetworkImage(
+                                imageUrl: loja.imagemPerfil,
+                                fit: BoxFit.cover,
+                                useOldImageOnUrlChange: true,
                               ),
-                              transitionOnUserGestures: true
                             ),
                           ),
                         ),
@@ -143,7 +139,7 @@ class ItemLoja extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                // Modular.to.pushNamed('/loja/${loja.uidLojista}');
+                //Modular.to.pushNamed('/loja/${loja.uidLojista}', arguments: loja);
                 Modular.to.pushNamed('/loja', arguments: loja);
               },
             ),

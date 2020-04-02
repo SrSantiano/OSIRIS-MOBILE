@@ -7,12 +7,10 @@ import 'package:osiris/app/modules/loja/pages/loja_page/loja_page_controller.dar
 
 class LojaCardapioPage extends StatefulWidget {
   final String uidLojista;
-  final ScrollController scrollController;
 
   const LojaCardapioPage({
     Key key,
     @required this.uidLojista,
-    @required this.scrollController,
   }) : super(key: key);
 
   @override
@@ -22,6 +20,7 @@ class LojaCardapioPage extends StatefulWidget {
 class _LojaCardapioPageState
     extends ModularState<LojaCardapioPage, LojaPageController>
     with TickerProviderStateMixin {
+
   Stream<List<Categoria>> streamCategoria;
   TabController _tabController;
   final _pageController = PageController(initialPage: 0);
@@ -44,7 +43,6 @@ class _LojaCardapioPageState
               builder: (context, snapshot) {
                 //lembrar de colocar os connection state;
                 if (snapshot.hasError) return Text('${snapshot.error}');
-
                 _tabController = TabController(
                   length: snapshot.data.length,
                   initialIndex: 0,
@@ -92,14 +90,14 @@ class _LojaCardapioPageState
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+                topLeft: Radius.circular(0),
+                topRight: Radius.circular(0),
               ),
             ),
           ),
         ),
         Flexible(
-          flex: 10,
+          flex: 15,
           child: StreamBuilder<List<Categoria>>(
             stream: streamCategoria,
             builder: (context, snapshot) {
@@ -116,7 +114,6 @@ class _LojaCardapioPageState
                   return StreamBuilderProduto(
                     idCategoria: snapshot.data[position].idCategoria,
                     uidLojista: widget.uidLojista,
-                    scrollController: widget.scrollController,
                   );
                 },
               );
