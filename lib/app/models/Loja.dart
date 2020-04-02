@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:decimal/decimal.dart';
 import 'package:osiris/app/models/Usuario.dart';
-import 'Categoria.dart';
 import 'RedeSocial.dart';
 import 'Tema.dart';
 
@@ -62,7 +61,7 @@ class Loja extends Usuario {
       email: doc['email'] as String,
       telefone1: doc['telefone1'] as String,
       telefone2: doc['telefone2'] as String,
-      uidLojista: doc['uidLojista'] as String,
+      uidLojista: doc.documentID,
       nomeFantasia: doc['nomeFantasia'] as String,
       possuiLojaFisica: doc['possuiLojaFisica'] as bool,
       categoriaPrimaria: doc['categoriaPrimaria'] as String,

@@ -3,13 +3,12 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:osiris/app/models/Loja.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:osiris/app/modules/loja/repository/loja_repository_controller.dart';
+
 
 class ItemLoja extends StatelessWidget {
   final Loja loja;
-  final LojaRepositoryController lojaRepositoryController = Modular.get();
 
- ItemLoja({Key key, this.loja}) : super(key: key);
+  ItemLoja({Key key, @required this.loja}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -140,8 +139,8 @@ class ItemLoja extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                lojaRepositoryController.uidLojista = loja.uidLojista;
-                Modular.to.pushNamed('/loja');
+                //Modular.to.pushNamed('/loja/${loja.uidLojista}', arguments: loja);
+                Modular.to.pushNamed('/loja', arguments: loja);
               },
             ),
           ),

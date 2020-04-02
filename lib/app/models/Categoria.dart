@@ -8,7 +8,7 @@ class Categoria {
 
   factory Categoria.fromDocument(DocumentSnapshot doc) {
     return Categoria(
-      idCategoria: doc['idCategoria'],
+      idCategoria: doc.documentID,
       nome: doc['nome'],
     );
   }
