@@ -12,11 +12,4 @@ abstract class _LojaCardapioPageControllerBase with Store {
 
   _LojaCardapioPageControllerBase(ILojaRepository this.repository);
 
-  @observable
-  int value = 0;
-
-  @action
-  void increment() {
-    value++;
-  }
 }

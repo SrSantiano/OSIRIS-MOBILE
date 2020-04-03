@@ -25,17 +25,8 @@ class ProdutoUnidade extends Produto implements IProduto {
           tipoProduto: tipoProduto,
         );
 
-  String getIngredientes() {
-    if (this.ingredientes.length > 1) {
-      return this.ingredientes.join(',');
-    } else {
-      return "";
-    }
-  }
-
   factory ProdutoUnidade.fromDocument(DocumentSnapshot doc) {
     return ProdutoUnidade(
-        //idProduto: doc['idProduto'] as String,
         idProduto: doc.documentID,
         nome: doc['nome'] as String,
         imagem: doc['imagem'] as String,

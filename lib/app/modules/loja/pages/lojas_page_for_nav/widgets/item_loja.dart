@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:osiris/app/models/Loja.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
+import 'package:osiris/app/utils/extension_color.dart';
 
 class ItemLoja extends StatelessWidget {
   final Loja loja;
@@ -20,7 +20,7 @@ class ItemLoja extends StatelessWidget {
             height: 110,
             decoration: BoxDecoration(
               color: Color(
-                loja.tema.corPrimaria.toIntFlutterColor(),
+                loja.tema.corPrimaria.toHexFlutterColor(),
               ),
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(15),
@@ -61,7 +61,7 @@ class ItemLoja extends StatelessWidget {
                             end: Alignment.centerRight,
                             colors: [
                               const Color(0x00000000),
-                              Color(loja.tema.corPrimaria.toIntFlutterColor()),
+                              Color(loja.tema.corPrimaria.toHexFlutterColor()),
                             ],
                             tileMode: TileMode.repeated,
                           ),
@@ -105,7 +105,7 @@ class ItemLoja extends StatelessWidget {
                             fontSize: 18.0,
                             letterSpacing: 0,
                             color: Color(
-                              loja.tema.corTextoPrimario.toIntFlutterColor(),
+                              loja.tema.corTextoPrimario.toHexFlutterColor(),
                             ),
                           ),
                           textAlign: TextAlign.right,
@@ -116,7 +116,7 @@ class ItemLoja extends StatelessWidget {
                           style: GoogleFonts.raleway(
                             fontSize: 14.0,
                             color: Color(
-                              loja.tema.corTextoPrimario.toIntFlutterColor(),
+                              loja.tema.corTextoPrimario.toHexFlutterColor(),
                             ),
                           ),
                         )
@@ -147,11 +147,5 @@ class ItemLoja extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-extension NumberParsing on String {
-  int toIntFlutterColor() {
-    return int.parse("0xFF${this.substring(1)}");
   }
 }

@@ -46,7 +46,7 @@ class LojaRepository extends Disposable implements ILojaRepository {
         .collection('Cardapio')
         .getDocuments();
     return numCategorias.documents.length;
-  } */
+  }  */
 
   @override
   Stream<List<ProdutoUnidade>> getProdutos(

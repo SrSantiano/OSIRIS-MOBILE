@@ -25,7 +25,7 @@ class Tema {
       : corTextoTitulo = map['corTextoTitulo'],
         corPrimaria = map['corPrimaria'],
         corPrimariaDark = map['corPrimariaDark'],
-        corPrimariaLight = map['corPrimariaDark'],
+        corPrimariaLight = map['corPrimariaLight'],
         corTextoPrimario = map['corTextoPrimario'],
         corSecundaria = map['corSecundaria'],
         corSecundariaDark = map['corSecundariaDark'],
