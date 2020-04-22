@@ -289,10 +289,12 @@ packages:
   flutter_modular:
     dependency: "direct main"
     description:
-      name: flutter_modular
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
+      path: "."
+      ref: HEAD
+      resolved-ref: "962bb2e79fbd47352cb7b14cfb02181fa8e31c66"
+      url: "https://github.com/Flutterando/modular"
+    source: git
+    version: "1.1.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
