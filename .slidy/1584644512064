@@ -1,4 +1,0 @@
-lib/app/modules/login/pages/login_entrar/login_entrar_widget.dart
-test/app/modules/login/pages/login_entrar/login_entrar_widget_test.dart
-lib/app/modules/login/pages/login_entrar/login_entrar_controller.dart
-test/app/modules/login/pages/login_entrar/login_entrar_controller_test.dart

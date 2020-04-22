@@ -1,4 +1,0 @@
-lib/app/modules/login/pages/login/login_widget.dart
-test/app/modules/login/pages/login/login_widget_test.dart
-lib/app/modules/login/pages/login/login_controller.dart
-test/app/modules/login/pages/login/login_controller_test.dart
