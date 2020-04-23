@@ -1,7 +1,6 @@
-import 'package:osiris/app/model/Loja.dart';
-import 'package:osiris/app/modules/feed/feed_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:osiris/app/modules/feed/pages/feed_page.dart';
+import 'feed_controller.dart';
+import 'pages/feed_page.dart';
 
 class FeedModule extends ChildModule {
   

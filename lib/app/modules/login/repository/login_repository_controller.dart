@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:osiris/app/modules/login/repository/login_repository_contracts.dart';
+
+import 'login_repository_contracts.dart';
 
 part 'login_repository_controller.g.dart';
 
@@ -25,20 +26,12 @@ abstract class _LoginRepositoryControllerBase with Store {
 
   @action
   Future<FirebaseUser> loginWithGoogle() async {
-    try {
-      return await _loginRepository.getGoogleLogin();
-    } catch (e) {
-      return null;
-    }
+    return await _loginRepository.getGoogleLogin();
   }
 
   @action
   Future<FirebaseUser> loginWithFacebook() async {
-    try {
-      return await _loginRepository.getFacebookLogin();
-    } catch (e) {
-      return null;
-    }
+    return await _loginRepository.getFacebookLogin();
   }
 
   @action

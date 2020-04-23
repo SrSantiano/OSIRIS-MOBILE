@@ -10,7 +10,7 @@ abstract class Produto {
   String idProduto;
   String nome;
   String imagem;
-  List<String> _ingredientes;
+  final List<String> _ingredientes;
   TipoProdutoEnum tipoProduto;
 
   Produto(
@@ -22,12 +22,13 @@ abstract class Produto {
       : _ingredientes = ingredientes;
 
   String getIngredientes() {
-    if (this._ingredientes.length > 1)
-      return '${this._ingredientes.getRange(0, this._ingredientes.length - 1).join(', ')}' +
-          ' e ${this._ingredientes.last}.';
-    else if (this._ingredientes.length == 1)
-      return this._ingredientes.first + '.';
-    else
+    if (_ingredientes.length > 1) {
+      return '${_ingredientes.getRange(0, _ingredientes.length - 1).join(', ')}'
+          ' e ${_ingredientes.last}.';
+    } else if (_ingredientes.length == 1) {
+      return '${_ingredientes.first}.';
+    } else {
       return '';
+    }
   }
 }

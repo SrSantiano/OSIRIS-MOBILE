@@ -1,8 +1,4 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:osiris/app/model/IProduto.dart';
-import 'package:osiris/app/model/ItemCarrinho.dart';
-import 'package:osiris/app/modules/carrinho/pages/carrinho/carrinho_controller.dart';
 
 part 'produto_controller.g.dart';
 
@@ -25,6 +21,6 @@ abstract class _ProdutoControllerBase with Store {
 
   @action
   void setTamObservacoes(int tam) {
-    observacoes = new List<String>(tam);
+    observacoes = List<String>(tam);
   }
 }

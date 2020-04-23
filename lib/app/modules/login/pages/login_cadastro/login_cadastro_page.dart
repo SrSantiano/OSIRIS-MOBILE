@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:osiris/app/modules/login/pages/login_cadastro/login_cadastro_controller.dart';
-import 'package:osiris/app/utils/constants.dart';
-import 'package:osiris/app/utils/rounded_button.dart';
-import 'package:osiris/app/utils/social_icons.dart';
+
+import '../../../../utils/constants.dart';
+import '../../../../utils/rounded_button.dart';
+import '../../../../utils/social_icons.dart';
+import 'login_cadastro_controller.dart';
 
 class LoginCadastroPage extends StatefulWidget {
   final String title;

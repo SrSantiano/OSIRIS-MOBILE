@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:osiris/app/model/ItemCarrinho.dart';
-import 'package:osiris/app/model/ProdutoAlimentoUn.dart';
-import 'package:osiris/app/modules/carrinho/pages/carrinho/carrinho_controller.dart';
-import 'package:osiris/app/modules/lojista/pages/lojista_navigation/lojista_navigation_controller.dart';
-import 'package:osiris/app/modules/lojista/pages/produto/produto_controller.dart';
-import 'package:osiris/app/modules/lojista/pages/produto/widgets/button_carrinho.dart';
-import 'package:osiris/app/modules/lojista/pages/produto/widgets/numberpicker_qtde.dart';
 
-final CarrinhoController _carrinhoController = Modular.get();
+import '../../../../model/produto_alimento_un.dart';
+import '../lojista_navigation/lojista_navigation_controller.dart';
+import 'produto_controller.dart';
+import 'widgets/button_carrinho.dart';
+import 'widgets/numberpicker_qtde.dart';
 
 class ProdutoPage extends StatefulWidget {
   final ProdutoAlimentoUn produtoAlimentoUn;
@@ -106,9 +103,7 @@ class _ProdutoPageState extends ModularState<ProdutoPage, ProdutoController> {
                               valorInicial: 1,
                               valorMinimo: 1,
                               valorMaximo: 10,
-                              onChanged: (n) {
-                                controller.setQtde(n);
-                              },
+                              onChanged: controller.setQtde,
                             ),
                           ),
                         ),
@@ -120,7 +115,7 @@ class _ProdutoPageState extends ModularState<ProdutoPage, ProdutoController> {
                     child: ButtonCarrinho(
                       qtde: controller.qtde,
                       value: Decimal.fromInt(controller.qtde) *
-                          widget.produtoAlimentoUn.precoDecimal(),
+                          widget.produtoAlimentoUn.preco,
                       onPressed: () {
                         showModalBottomSheet(
                           //isDismissible: false,
@@ -233,7 +228,7 @@ class _CarrinhoBottomSheetState
                         Padding(
                           padding: const EdgeInsets.all(10),
                           child: Container(
-                            decoration: new BoxDecoration(
+                            decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20)),
                               color: Colors.grey[100],
@@ -295,12 +290,7 @@ class _CarrinhoBottomSheetState
                             duration: Duration(milliseconds: 500),
                             curve: Curves.ease,
                           );
-                        } else {
-                          final itemCarrinho = ItemCarrinho(
-                              produto: widget.produtoAlimentoUn,
-                              quantidade: controller.qtde,
-                              observacao: controller.observacoes);
-                        }
+                        } else {}
                       },
                     ),
                   ],

@@ -3,12 +3,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:osiris/app/model/ProdutoBebidaTam.dart';
-import 'package:osiris/app/model/Tamanho.dart';
-import 'package:osiris/app/model/Unidade.dart';
-import 'package:osiris/app/modules/lojista/pages/lojista/widgets/numberpicker_beb.dart';
-import 'package:osiris/app/utils/extension_color.dart';
+
+import '../../../../../model/produto_bebida_tam.dart';
+import '../../../../../model/unidade.dart';
+import '../../../../../utils/extension_color.dart';
 import '../lojista_controller.dart';
+import 'numberpicker_beb.dart';
 
 class ItemBebidaTam extends StatefulWidget {
   final ProdutoBebidaTam _produtoBebida;

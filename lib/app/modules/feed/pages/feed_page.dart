@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
 import '../feed_controller.dart';
 
 class FeedPage extends StatefulWidget {
@@ -15,7 +16,6 @@ class _FeedPageState extends ModularState<FeedPage, FeedController> {
   //use 'controller' variable to access controller
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller.getUser();
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:osiris/app/model/Loja.dart';
-import 'package:osiris/app/modules/carrinho/pages/carrinho/carrinho_controller.dart';
-import 'package:osiris/app/modules/lojista/pages/lojista_navigation/lojista_navigation_controller.dart';
-import 'package:osiris/app/modules/lojista/pages/lojista_navigation/widgets/item_lojista.dart';
+import '../../../../model/loja.dart';
+
+import 'lojista_navigation_controller.dart';
+import 'widgets/item_lojista.dart';
 
 class LojistaNavigationPage extends StatefulWidget {
   @override
@@ -29,11 +29,11 @@ class _LojistaPageState
       body: StreamBuilder<List<Loja>>(
         stream: _lojas,
         builder: (context, snapshot) {
-          return new ListView.builder(
+          return ListView.builder(
             itemCount: snapshot.data.length,
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) {
-              return new ItemLojista(
+              return ItemLojista(
                 key: Key(snapshot.data[index].uidLojista),
                 loja: snapshot.data[index],
                 onPressed: () {

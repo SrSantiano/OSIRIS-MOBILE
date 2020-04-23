@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:osiris/app/model/IProduto.dart';
-import 'package:osiris/app/model/ProdutoAlimentoUn.dart';
-import 'package:osiris/app/model/ProdutoBebidaTam.dart';
-import 'package:osiris/app/modules/lojista/pages/lojista/lojista_controller.dart';
-import 'package:osiris/app/modules/lojista/pages/lojista/widgets/item_bebida_tam.dart';
-import 'package:osiris/app/modules/lojista/pages/lojista/widgets/item_produto_un.dart';
+import '../../../../../model/iproduto.dart';
+import '../../../../../model/produto_alimento_un.dart';
+import '../../../../../model/produto_bebida_tam.dart';
+import '../lojista_controller.dart';
+import 'item_bebida_tam.dart';
+import 'item_produto_un.dart';
 
 class StreamBuilderProduto extends StatefulWidget {
   final String uidLojista;

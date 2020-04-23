@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:osiris/app/model/ProdutoAlimentoUn.dart';
+
+import '../../../../../model/produto_alimento_un.dart';
 
 class ItemProdutoUn extends StatelessWidget {
   final ProdutoAlimentoUn produtoUnidade;
@@ -100,7 +101,7 @@ class ItemProdutoUn extends StatelessWidget {
                                     color: Colors.black87),
                               ),
                               Text(
-                                '${produtoUnidade.precoDecimal().toStringAsFixed(2)}',
+                                '${produtoUnidade.preco.toStringAsFixed(2)}',
                                 style: GoogleFonts.bitter(
                                     fontWeight: FontWeight.w900,
                                     fontSize: 20.0,

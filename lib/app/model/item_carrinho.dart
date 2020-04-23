@@ -1,4 +1,4 @@
-import 'package:osiris/app/model/IProduto.dart';
+import 'iproduto.dart';
 
 class ItemCarrinho {
   IProduto produto;

@@ -1,57 +1,46 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:decimal/decimal.dart';
-import 'package:osiris/app/model/Usuario.dart';
-import 'RedeSocial.dart';
-import 'Tema.dart';
+
+import 'rede_social.dart';
+import 'tema.dart';
+import 'usuario.dart';
 
 class Loja extends Usuario {
-  String _uidLojista;
-  String _nomeFantasia;
-  bool _possuiLojaFisica;
-  String _categoriaPrimaria;
-  String _avaliacao;
-  String _imagemPerfil;
-  String _publicacaoImagemInicial;
-  Tema _tema;
-  bool _mostrarBebidasInicio;
-  String _tempoEntrega;
-  Decimal _taxaEntrega;
-  bool _estaAberto;
-  bool _pagamentoCartao;
-  List<RedeSocial> _redeSocial;
+  String uidLojista;
+  String nomeFantasia;
+  bool possuiLojaFisica;
+  String categoriaPrimaria;
+  String avaliacao;
+  String imagemPerfil;
+  String publicacaoImagemInicial;
+  Tema tema;
+  bool mostrarBebidasInicio;
+  String tempoEntrega;
+  Decimal taxaEntrega;
+  bool estaAberto;
+  bool pagamentoCartao;
+  List<RedeSocial> redeSocial;
 
   Loja(
       {String nome,
       String email,
       String telefone1,
       String telefone2,
-      String uidLojista,
-      String nomeFantasia,
-      bool possuiLojaFisica,
-      String categoriaPrimaria,
-      String avaliacao,
-      String imagemPerfil,
-      bool mostrarBebidasInicio,
-      String publicacaoImagemInicial,
-      Tema tema,
-      String tempoEntrega,
+      this.uidLojista,
+      this.nomeFantasia,
+      this.possuiLojaFisica,
+      this.categoriaPrimaria,
+      this.avaliacao,
+      this.imagemPerfil,
+      this.mostrarBebidasInicio,
+      this.publicacaoImagemInicial,
+      this.tema,
+      this.tempoEntrega,
       String taxaEntrega,
-      bool estaAberto,
-      bool pagamentoCartao,
-      List<RedeSocial> redeSocial})
-      : _uidLojista = uidLojista,
-        _nomeFantasia = nomeFantasia,
-        _possuiLojaFisica = possuiLojaFisica,
-        _categoriaPrimaria = categoriaPrimaria,
-        _mostrarBebidasInicio = mostrarBebidasInicio,
-        _avaliacao = avaliacao,
-        _imagemPerfil = imagemPerfil,
-        _publicacaoImagemInicial = publicacaoImagemInicial,
-        _tema = tema,
-        _taxaEntrega = Decimal.parse(taxaEntrega),
-        _estaAberto = estaAberto,
-        _pagamentoCartao = pagamentoCartao,
-        _redeSocial = redeSocial,
+      this.estaAberto,
+      this.pagamentoCartao,
+      this.redeSocial})
+      : taxaEntrega = Decimal.parse(taxaEntrega),
         super(
             nome: nome,
             email: email,
@@ -82,13 +71,4 @@ class Loja extends Usuario {
       tempoEntrega: doc['tempoEntrega'] as String,
     );
   }
-
-  Tema get tema => this._tema;
-  String get publicacaoImagemInicial => this._publicacaoImagemInicial;
-  String get imagemPerfil => this._imagemPerfil;
-  String get nomeFantasia => this._nomeFantasia;
-  String get categoriaPrimaria => this._categoriaPrimaria;
-  List<RedeSocial> get redeSocial => this._redeSocial;
-  String get uidLojista => this._uidLojista;
-  bool get mostrarBebidasInicio => this._mostrarBebidasInicio;
 }

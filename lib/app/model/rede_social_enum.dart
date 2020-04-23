@@ -1,4 +1,4 @@
-enum RedeSocialEnum{
+enum RedeSocialEnum {
   INSTAGRAM,
   FACEBOOK,
   TWITTER,

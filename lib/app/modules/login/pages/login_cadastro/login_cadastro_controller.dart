@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:osiris/app/modules/login/repository/login_repository_controller.dart';
+
+import '../../repository/login_repository_controller.dart';
 
 part 'login_cadastro_controller.g.dart';
 
@@ -15,14 +15,13 @@ abstract class _LoginCadastroControllerBase with Store {
   @observable
   String password = '';
 
-
   final LoginRepositoryController _auth = Modular.get();
 
   @action
   Future<void> registerWithEmailAndPassword() async {
     try {
-      await _auth.registerWithEmailAndPassword(this.email, this.password);
-    } catch (e) {
+      await _auth.registerWithEmailAndPassword(email, password);
+    } on Exception catch (e) {
       print(e);
     }
   }
@@ -30,22 +29,20 @@ abstract class _LoginCadastroControllerBase with Store {
   @action
   Future loginWithFacebook() async {
     try {
-
-    if( await  _auth.loginWithFacebook() != null){
-      Modular.to.pushReplacementNamed('/feed');
-    }
-    } catch (e) {
+      if (await _auth.loginWithFacebook() != null) {
+        Modular.to.pushReplacementNamed('/feed');
+      }
+    } on Exception catch (e) {
       print(e);
     }
   }
 
-  Future<void> loginWithGoogle() async{
-
+  Future<void> loginWithGoogle() async {
     try {
-      if(await _auth.loginWithGoogle() != null){
+      if (await _auth.loginWithGoogle() != null) {
         Modular.to.pushReplacementNamed('/feed');
       }
-    } catch (e) {
+    } on Exception catch (e) {
       print(e);
     }
   }

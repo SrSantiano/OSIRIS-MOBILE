@@ -2,18 +2,19 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:osiris/app/model/Categoria.dart';
-import 'package:osiris/app/model/Loja.dart';
-import 'package:osiris/app/modules/lojista/pages/lojista/lojista_controller.dart';
-import 'package:osiris/app/modules/lojista/pages/lojista/widgets/streambuilder_produto.dart';
-import 'package:osiris/app/utils/extension_color.dart';
+
+import '../../../../model/categoria.dart';
+import '../../../../model/loja.dart';
+import '../../../../utils/extension_color.dart';
+import 'lojista_controller.dart';
+import 'widgets/streambuilder_produto.dart';
 
 class LojistaPage extends StatefulWidget {
   final Loja _loja;
   //final Loja loja2 = Modular.args.data as Loja;
 
   LojistaPage({Key key, @required Loja loja})
-      : this._loja = loja,
+      : _loja = loja,
         assert(loja != null),
         super(key: key);
 
@@ -30,7 +31,8 @@ class _LojistaPageState extends ModularState<LojistaPage, LojistaController>
   @override
   void initState() {
     _streamCategoriaAlimentos = controller.repository.getCategorias(
-        widget._loja.uidLojista, widget._loja.mostrarBebidasInicio);
+        widget._loja.uidLojista,
+        mostrarBebidas: widget._loja.mostrarBebidasInicio);
     _numCategorias = _streamCategoriaAlimentos.first.then((value) {
       return value.length;
     }).whenComplete(() {

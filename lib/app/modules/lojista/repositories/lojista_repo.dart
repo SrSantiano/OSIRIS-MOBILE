@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:osiris/app/model/IProduto.dart';
-import 'package:osiris/app/model/Categoria.dart';
-import 'package:osiris/app/model/Produto.dart';
-import 'package:osiris/app/model/ProdutoAlimentoUn.dart';
-import 'package:osiris/app/model/ProdutoBebidaTam.dart';
-import 'package:osiris/app/model/Loja.dart';
-import 'package:osiris/app/model/Unidade.dart';
-import 'package:osiris/app/modules/lojista/repositories/lojista_repo_contracts.dart';
+
+import '../../../model/categoria.dart';
+import '../../../model/iproduto.dart';
+import '../../../model/loja.dart';
+import '../../../model/produto.dart';
+import '../../../model/produto_alimento_un.dart';
+import '../../../model/produto_bebida_tam.dart';
+import '../../../model/unidade.dart';
+import 'lojista_repo_contracts.dart';
 
 class LojistaRepo extends Disposable implements ILojistaRepo {
   final Firestore firestore;
@@ -30,7 +31,7 @@ class LojistaRepo extends Disposable implements ILojistaRepo {
 
   @override
   Stream<List<Categoria>> getCategorias(
-      String uidLojista, bool mostrarBebidas) {
+      String uidLojista, {bool mostrarBebidas}) {
     if (mostrarBebidas) {
       return firestore
           .collection('Loja')

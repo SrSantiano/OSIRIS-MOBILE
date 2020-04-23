@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:osiris/app/model/Loja.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:osiris/app/utils/extension_color.dart';
+
+import '../../../../../model/loja.dart';
+import '../../../../../utils/extension_color.dart';
 
 class ItemLojista extends StatelessWidget {
   final Loja loja;

@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/foundation.dart';
-import 'package:osiris/app/model/Produto.dart';
-import 'package:osiris/app/model/IProduto.dart';
+
+import 'iproduto.dart';
+import 'produto.dart';
 
 class ProdutoAlimentoUn extends Produto implements IProduto {
-  Decimal _preco;
+  Decimal preco;
 
   ProdutoAlimentoUn(
       {String idProduto,
@@ -14,7 +15,7 @@ class ProdutoAlimentoUn extends Produto implements IProduto {
       List<String> ingredientes,
       TipoProdutoEnum tipoProduto,
       String preco})
-      : this._preco = Decimal.parse(preco),
+      : preco = Decimal.parse(preco),
         super(
           idProduto: idProduto,
           nome: nome,
@@ -34,13 +35,5 @@ class ProdutoAlimentoUn extends Produto implements IProduto {
         tipoProduto: TipoProdutoEnum.values
             .firstWhere((e) => describeEnum(e) == doc['tipoProduto']),
         preco: doc['preco']);
-  }
-
-  //@override
-  Decimal precoDecimal({int index = 0}) => this._preco;
-
-  //@override
-  Object getProduto({int index = 0}) {
-    return this;
   }
 }

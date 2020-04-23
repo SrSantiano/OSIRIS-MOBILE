@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:osiris/app/modules/carrinho/pages/carrinho/carrinho_controller.dart';
+
+import 'carrinho_controller.dart';
 
 class CarrinhoPage extends StatefulWidget {
   final String title;

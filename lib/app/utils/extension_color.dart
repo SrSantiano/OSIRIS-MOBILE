@@ -1,5 +1,5 @@
 extension NumberParsing on String {
   int toHexFlutterColor() {
-    return int.parse("0xFF${this.substring(1)}");
+    return int.parse("0xFF${substring(1)}");
   }
 }

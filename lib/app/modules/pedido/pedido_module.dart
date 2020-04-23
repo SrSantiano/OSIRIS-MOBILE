@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:osiris/app/modules/pedido/pages/pedido/pedido_controller.dart';
+
+import 'pages/pedido/pedido_controller.dart';
 
 class PedidoModule extends ChildModule {
   @override

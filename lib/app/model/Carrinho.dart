@@ -1,7 +1,7 @@
-import 'package:osiris/app/model/Loja.dart';
-import 'package:osiris/app/model/ItemCarrinho.dart';
+import '../../app/model/item_carrinho.dart';
+import '../../app/model/loja.dart';
 
-class Carrinho{
+class Carrinho {
   Loja loja;
   List<ItemCarrinho> itensCarrinho;
 

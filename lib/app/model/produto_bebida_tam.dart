@@ -1,20 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:decimal/decimal.dart';
 import 'package:flutter/foundation.dart';
-import 'package:osiris/app/model/Produto.dart';
-import 'package:osiris/app/model/Tamanho.dart';
-import 'package:osiris/app/model/IProduto.dart';
+import 'iproduto.dart';
+import 'produto.dart';
+import 'tema_bebida.dart';
 
-class ProdutoAlimentoTam extends Produto implements IProduto {
-  List<Tamanho> tamanho;
+class ProdutoBebidaTam extends Produto implements IProduto{
+  bool alcoolico;
+  TemaBebida tema;
 
-  ProdutoAlimentoTam(
+  ProdutoBebidaTam(
       {String idProduto,
       String nome,
       String imagem,
       List<String> ingredientes,
       TipoProdutoEnum tipoProduto,
-      this.tamanho})
+      this.alcoolico,
+      this.tema})
       : super(
           idProduto: idProduto,
           nome: nome,
@@ -23,8 +24,8 @@ class ProdutoAlimentoTam extends Produto implements IProduto {
           tipoProduto: tipoProduto,
         );
 
-  factory ProdutoAlimentoTam.fromDoc(DocumentSnapshot doc) {
-    return ProdutoAlimentoTam(
+  factory ProdutoBebidaTam.fromDocument(DocumentSnapshot doc) {
+    return ProdutoBebidaTam(
       idProduto: doc.documentID,
       nome: doc['nome'] as String,
       imagem: doc['imagem'] as String,
@@ -33,19 +34,8 @@ class ProdutoAlimentoTam extends Produto implements IProduto {
           .toList(),
       tipoProduto: TipoProdutoEnum.values
           .firstWhere((e) => describeEnum(e) == doc['tipoProduto']),
-      tamanho: (doc['tamanho'] as List<dynamic>)
-          .map<Tamanho>((value) => Tamanho.fromMap(value))
-          .toList(),
+      alcoolico: doc['alcoolico'],
+      tema: TemaBebida.fromMap(doc['tema'] as Map<String, dynamic>),
     );
-  }
-
-  @override
-  Decimal precoDecimal({int index = 0}) {
-    return tamanho[index].preco;
-  }
-
-  @override
-  Object getProduto({int index = 0}) {
-    return this;
   }
 }

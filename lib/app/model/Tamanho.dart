@@ -8,7 +8,7 @@ class Tamanho {
   Tamanho({
     this.tamanho,
     String preco,
-  }) : this.preco = Decimal.parse(preco);
+  }) : preco = Decimal.parse(preco);
 
   factory Tamanho.fromMap(Map<String, dynamic> map) {
     return Tamanho(

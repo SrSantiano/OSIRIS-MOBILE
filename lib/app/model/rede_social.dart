@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'RedeSocialEnum.dart';
+import 'rede_social_enum.dart';
 
 class RedeSocial {
   RedeSocialEnum redeSocial;
