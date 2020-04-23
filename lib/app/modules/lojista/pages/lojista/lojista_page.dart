@@ -11,8 +11,7 @@ import 'widgets/streambuilder_produto.dart';
 
 class LojistaPage extends StatefulWidget {
   final Loja _loja;
-  //final Loja loja2 = Modular.args.data as Loja;
-
+  
   LojistaPage({Key key, @required Loja loja})
       : _loja = loja,
         assert(loja != null),
