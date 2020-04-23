@@ -19,7 +19,7 @@ class Unidade {
 
   factory Unidade.fromDocument(DocumentSnapshot doc) {
     return Unidade(
-      idProduto: doc.reference.parent().id,
+      idProduto: doc.reference.parent().parent().documentID,
       preco: doc['preco'] as String,
       quantidade: doc['quantidade'] as String,
       tipoUnidade: TipoUnidadeEnum.values
