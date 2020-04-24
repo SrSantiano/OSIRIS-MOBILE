@@ -1,9 +1,9 @@
 import 'iproduto.dart';
 
-class ItemCarrinho {
+class ItemPedido {
   IProduto produto;
   int quantidade;
   List<String> observacao;
 
-  ItemCarrinho({this.produto, this.quantidade, this.observacao});
+  ItemPedido({this.produto, this.quantidade, this.observacao});
 }
